@@ -1,0 +1,2140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ERGOMAT • Artigos (Mock - arquivo único)</title>
+  <style>
+    :root{
+      --bg0:#071018;
+      --bg1:#070b14;
+      --card: rgba(0,0,0,.18);
+      --card2: rgba(0,0,0,.26);
+      --stroke: rgba(255,255,255,.08);
+      --stroke2: rgba(255,255,255,.12);
+      --txt: rgba(255,255,255,.92);
+      --muted: rgba(210,230,255,.70);
+      --muted2: rgba(210,230,255,.55);
+      --accent: rgba(64,245,182,1);
+      --accent2: rgba(64,245,182,.22);
+      --danger: rgba(255,104,104,1);
+      --danger2: rgba(255,104,104,.18);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--txt);
+      background:
+        radial-gradient(1200px 800px at 75% 15%, rgba(18,165,152,.28), transparent 60%),
+        radial-gradient(900px 700px at 20% 90%, rgba(66,97,255,.22), transparent 62%),
+        linear-gradient(180deg, #040812, #050915 40%, #040812);
+      overflow:hidden;
+    }
+
+    /* Layout */
+    .app{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      height:100%;
+    }
+    .sidebar{
+      background: rgba(0,0,0,.22);
+      border-right: 1px solid var(--stroke);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      min-width:260px;
+    }
+    .sb-title{
+      font-weight:800;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+    .sb-sub{
+      color: var(--muted2);
+      font-size:12px;
+      margin-top:2px;
+    }
+    .sb-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      overflow:auto;
+      padding-right:4px;
+    }
+    .sb-item{
+      background: rgba(0,0,0,.18);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding:12px 12px;
+      cursor:pointer;
+      transition: border-color .14s ease, background .14s ease, transform .08s ease;
+    }
+    .sb-item:hover{
+      border-color: rgba(255,255,255,.14);
+      background: rgba(0,0,0,.24);
+      transform: translateY(-1px);
+    }
+    .sb-item.active{
+      border-color: rgba(64,245,182,.5);
+      box-shadow: 0 0 0 1px rgba(64,245,182,.12), 0 12px 40px rgba(0,0,0,.35);
+      background: rgba(0,0,0,.26);
+    }
+    .sb-item .name{
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .pill{
+      font-size:12px;
+      color: rgba(255,255,255,.86);
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .sb-item .meta{
+      margin-top:6px;
+      font-size:12px;
+      color: var(--muted2);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .main{
+      padding:16px 18px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-width:0;
+    }
+
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      min-width: 280px;
+    }
+    .logo{
+      width:30px; height:30px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(64,245,182,.9), rgba(60,120,255,.6));
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .brand .t{
+      display:flex; flex-direction:column; line-height:1.1;
+    }
+    .brand .t .big{
+      font-weight:900;
+      letter-spacing:.25px;
+    }
+    .brand .t .small{
+      font-size:12px;
+      color: var(--muted2);
+      margin-top:2px;
+    }
+
+    .search{
+      flex:1;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      background: rgba(0,0,0,.18);
+      border:1px solid var(--stroke);
+      border-radius: 999px;
+      padding:10px 12px;
+      min-width:0;
+    }
+    .search input{
+      background: transparent;
+      border: none;
+      outline:none;
+      color: var(--txt);
+      width:100%;
+      font-size:13px;
+      min-width:0;
+    }
+    .search .ic{
+      width:18px; height:18px;
+      opacity:.7;
+    }
+    .btn{
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.92);
+      padding:10px 14px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight:700;
+      font-size:13px;
+      transition: transform .08s ease, border-color .14s ease, background .14s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(0,0,0,.28);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      background: rgba(64,245,182,.12);
+      border-color: rgba(64,245,182,.35);
+    }
+    .btn.primary:hover{
+      background: rgba(64,245,182,.16);
+      border-color: rgba(64,245,182,.5);
+    }
+    .btn.danger{
+      background: rgba(255,104,104,.12);
+      border-color: rgba(255,104,104,.35);
+    }
+    .btn.danger:hover{
+      background: rgba(255,104,104,.16);
+      border-color: rgba(255,104,104,.5);
+    }
+    .btn.small{
+      padding:7px 12px;
+      font-size:12px;
+    }
+    .btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+      transform:none!important;
+    }
+
+    /* Content */
+    .content{
+      flex:1;
+      min-height:0;
+      overflow:auto;
+      padding-right:4px;
+    }
+    .hero{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      background: rgba(0,0,0,.16);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 40px rgba(0,0,0,.25);
+    }
+    .hero h1{
+      margin:0;
+      font-size:26px;
+      letter-spacing:.2px;
+    }
+    .hero .sub{
+      margin-top:6px;
+      font-size:12.5px;
+      color: var(--muted2);
+      line-height:1.4;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      font-size:12px;
+      color: rgba(255,255,255,.84);
+      white-space:nowrap;
+      user-select:none;
+    }
+    .dot{
+      width:8px; height:8px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.35);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.08);
+      display:inline-block;
+    }
+    .dot.ok{ background: rgba(64,245,182,1); box-shadow: 0 0 0 3px rgba(64,245,182,.15); }
+    .dot.bad{ background: rgba(255,104,104,1); box-shadow: 0 0 0 3px rgba(255,104,104,.15); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      gap:14px;
+      margin-top:14px;
+      min-height:0;
+    }
+    .machine-list{
+      background: rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius2);
+      overflow:hidden;
+      min-height: 220px;
+      display:flex;
+      flex-direction:column;
+    }
+    .machine-list .head{
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .machine-list .head .ttl{ font-weight:800; }
+    .machine-list .body{
+      overflow:auto;
+      padding:6px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height:0;
+    }
+    .mrow{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding:10px 10px;
+      cursor:pointer;
+      transition: background .12s ease, border-color .12s ease, transform .08s ease;
+    }
+    .mrow:hover{
+      background: rgba(0,0,0,.24);
+      border-color: rgba(255,255,255,.14);
+      transform: translateY(-1px);
+    }
+    .mrow.active{
+      border-color: rgba(64,245,182,.45);
+      background: rgba(64,245,182,.08);
+    }
+    .mrow .a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-weight:800;
+    }
+    .mrow .b{
+      margin-top:6px;
+      font-size:12px;
+      color: var(--muted2);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .card{
+      background: rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius2);
+      overflow:hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,.25);
+      min-height: 220px;
+    }
+    .card .card-head{
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .card .card-head .title{
+      font-weight:900;
+    }
+    .card .card-head .note{
+      font-size:12px;
+      color: var(--muted2);
+      text-align:right;
+      max-width: 60%;
+    }
+
+    /* Table */
+    .table{
+      width:100%;
+      border-collapse: separate;
+      border-spacing:0;
+      font-size:13px;
+    }
+    .table thead th{
+      position:sticky;
+      top:0;
+      z-index:2;
+      background: rgba(0,0,0,.22);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:left;
+      padding:10px 12px;
+      color: rgba(255,255,255,.82);
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .table tbody td{
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+      vertical-align:top;
+    }
+    .table tbody tr:hover td{
+      background: rgba(0,0,0,.14);
+    }
+    .muted{ color: var(--muted2); }
+    .mono{ font-family: var(--mono); }
+
+    /* Stat cards */
+    .stat{
+      background: rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius2);
+      padding:12px 14px;
+      box-shadow: 0 16px 50px rgba(0,0,0,.25);
+    }
+    .stat .value{
+      margin-top:6px;
+      font-size:24px;
+      font-weight:900;
+      letter-spacing:.25px;
+    }
+
+    /* Modal */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:50;
+    }
+    .overlay.show{ display:flex; }
+    .modal{
+      width:min(900px, 96vw);
+      max-height: min(90vh, 900px);
+      overflow:hidden;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(1200px 800px at 80% 10%, rgba(18,165,152,.22), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.50), rgba(0,0,0,.42));
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+    }
+    .modal.small{ width:min(560px, 96vw); }
+    .modal-head{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .modal-title{
+      font-weight:900;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .modal-sub{
+      margin-top:4px;
+      font-size:12px;
+      color: var(--muted2);
+      line-height:1.35;
+    }
+    .modal-body{
+      padding:14px 16px;
+      overflow:auto;
+      min-height:0;
+    }
+    .modal-foot{
+      padding:12px 16px;
+      border-top:1px solid rgba(255,255,255,.10);
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap:10px;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .row label{
+      font-size:12px;
+      color: var(--muted2);
+      font-weight:800;
+    }
+    input, textarea, select{
+      background: rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.92);
+      padding:10px 12px;
+      border-radius: 14px;
+      outline:none;
+      font-family: var(--sans);
+      font-size:13px;
+    }
+    textarea{ min-height: 90px; resize:vertical; }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(64,245,182,.45);
+      box-shadow: 0 0 0 3px rgba(64,245,182,.10);
+    }
+    .iconbtn{
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.88);
+      width:34px; height:34px;
+      border-radius: 12px;
+      cursor:pointer;
+    }
+    .iconbtn:hover{
+      background: rgba(0,0,0,.28);
+      border-color: rgba(255,255,255,.20);
+    }
+    .help{
+      font-size:12px;
+      color: var(--muted2);
+      line-height:1.35;
+      margin-top:8px;
+    }
+
+    /* --- Machine layout requested (big table + right faixa stack) --- */
+    .machine-grid{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:14px;
+      margin-top:14px;
+      min-height:0;
+      align-items:start;
+    }
+    .range-stack{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      overflow:auto;
+      max-height: 58vh;
+      padding-right:4px;
+    }
+    .range-card{
+      background: rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius2);
+      padding:12px;
+      cursor:pointer;
+      transition: transform .08s ease, border-color .12s ease, background .12s ease;
+    }
+    .range-card:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+    }
+    .range-card.active{
+      border-color: rgba(64,245,182,.45);
+      box-shadow: 0 0 0 1px rgba(64,245,182,.18), 0 10px 30px rgba(0,0,0,.35);
+    }
+    .range-topline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .range-marker{
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(64,245,182,.35);
+      background: rgba(64,245,182,.10);
+      color: rgba(188,255,233,.95);
+      white-space:nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <div class="sb-title">Máquinas / Rotas</div>
+      <div class="sb-sub">Selecione um programa</div>
+    </div>
+
+    <div class="sb-list" id="programList"></div>
+
+    <div class="sb-sub">
+      Mock (arquivo único) • Dados salvos no<br/>
+      <span class="mono">localStorage</span>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="t">
+          <div class="big">ERGOMAT • Artigos</div>
+          <div class="small" id="crumb">Programa 1 • Escolha uma máquina</div>
+        </div>
+      </div>
+
+      <div class="search" title="Busca global: faixa, número, título, descrição, requerente...">
+        <svg class="ic" viewBox="0 0 24 24" fill="none">
+          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="rgba(255,255,255,.75)" stroke-width="2"/>
+          <path d="M16.1 16.1 21 21" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="searchInput" placeholder="Pesquisar por faixa, número, título, descrição, requerente..." />
+      </div>
+
+      <button class="btn" id="btnReset">Reset</button>
+    </div>
+
+    <div class="content" id="view"></div>
+
+  </main>
+</div>
+
+<!-- MODAL: Create Machine -->
+<div class="overlay" id="modalCreateMachine">
+  <div class="modal small">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Criar máquina</div>
+        <div class="modal-sub" id="cmSub">Dentro do programa</div>
+      </div>
+      <button class="iconbtn" data-close="modalCreateMachine">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <label>Nome</label>
+        <input id="cmName" placeholder="Ex: TND"/>
+      </div>
+      <div class="row">
+        <label>Tag (opcional)</label>
+        <input id="cmTag" placeholder="Ex: /tnd"/>
+      </div>
+      <div class="row">
+        <label>Observação</label>
+        <textarea id="cmObs" placeholder="Breve descrição (opcional)"></textarea>
+      </div>
+      <div class="help">
+        Dica: a Tag aparece no canto superior direito e ajuda a identificar a máquina.
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" data-close="modalCreateMachine">Cancelar</button>
+      <button class="btn primary" id="cmCreateBtn">Criar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Create Range (machine-level) -->
+<div class="overlay" id="modalCreateRange">
+  <div class="modal small">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Criar faixa</div>
+        <div class="modal-sub" id="crSub">Dentro da máquina</div>
+      </div>
+      <button class="iconbtn" data-close="modalCreateRange">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <label>Início (mínimo)</label>
+        <input id="crMin" placeholder="Ex: 0" />
+      </div>
+      <div class="row">
+        <label>Fim (máximo)</label>
+        <input id="crMax" placeholder="Ex: 999999" />
+      </div>
+      <div class="row">
+        <label>Sem limite?</label>
+        <select id="crNoMax">
+          <option value="no">Não</option>
+          <option value="yes">Sim (∞)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Estado</label>
+        <select id="crState">
+          <option value="em_uso">Em uso</option>
+          <option value="encerrado">Encerrado</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Nome (opcional)</label>
+        <input id="crName" placeholder="Ex: Linha A" />
+      </div>
+      <div class="help">
+        A faixa cria um ambiente separado de itens dentro da máquina.
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" data-close="modalCreateRange">Cancelar</button>
+      <button class="btn primary" id="crCreateBtn">Criar faixa</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Select Range (Faixa Atual) -->
+<div class="overlay" id="modalSelectRange">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Selecionar faixa</div>
+        <div class="modal-sub">Escolha qual faixa será a <b>Faixa Atual</b> (ela fica em primeiro e controla a tabela grande).</div>
+      </div>
+      <button class="iconbtn" data-close="modalSelectRange">✕</button>
+    </div>
+
+    <div class="modal-body" style="padding:14px;">
+      <div id="srList" style="display:flex; flex-direction:column; gap:10px;"></div>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn" data-close="modalSelectRange">Cancelar</button>
+      <button class="btn primary" id="srSelectBtn">Selecionar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Edit Range -->
+<div class="overlay" id="modalEditRange">
+  <div class="modal small">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Editar faixa</div>
+        <div class="modal-sub" id="erSub">Faixa</div>
+      </div>
+      <button class="iconbtn" data-close="modalEditRange">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <label>Início (mínimo)</label>
+        <input id="erMin" />
+      </div>
+      <div class="row">
+        <label>Fim (máximo)</label>
+        <input id="erMax" />
+      </div>
+      <div class="row">
+        <label>Sem limite?</label>
+        <select id="erNoMax">
+          <option value="no">Não</option>
+          <option value="yes">Sim (∞)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Estado</label>
+        <select id="erState">
+          <option value="em_uso">Em uso</option>
+          <option value="encerrado">Encerrado</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Nome (opcional)</label>
+        <input id="erName" />
+      </div>
+      <div class="help">
+        Alterar intervalo exige cuidado: não é permitido sobrepor com outras faixas.
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" data-close="modalEditRange">Cancelar</button>
+      <button class="btn primary" id="erSaveBtn">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: New/Edit Item -->
+<div class="overlay" id="modalItem">
+  <div class="modal small">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="itTitle">Cadastrar item</div>
+        <div class="modal-sub" id="itSub">Faixa</div>
+      </div>
+      <button class="iconbtn" data-close="modalItem">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <label>Número</label>
+        <input id="itNumero" placeholder="Gerado automaticamente" disabled />
+      </div>
+      <div class="row">
+        <label>Notícia</label>
+        <input id="itNoticia" placeholder="Ex: 12345" />
+      </div>
+      <div class="row">
+        <label>Título</label>
+        <input id="itTitulo" placeholder="Ex: Ajuste no componente" />
+      </div>
+      <div class="row">
+        <label>Descrição</label>
+        <textarea id="itDescricao" placeholder="Descreva o problema/ação..."></textarea>
+      </div>
+      <div class="row">
+        <label>Requerente</label>
+        <input id="itRequerente" placeholder="Ex: Juan39" />
+      </div>
+      <div class="row">
+        <label>Atribuidor</label>
+        <input id="itAtribuidor" placeholder="Ex: Ivo39" />
+      </div>
+      <div class="row">
+        <label>Data/Hora</label>
+        <input id="itDataHora" placeholder="Ex: 28/01/2026 10:57" />
+      </div>
+      <div class="help">
+        A coluna “Status” está como OK no mock (pode ser evoluída depois).
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" data-close="modalItem">Cancelar</button>
+      <button class="btn primary" id="itSaveBtn">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Integration -->
+<div class="overlay" id="modalIntegration">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Integração de Dados</div>
+        <div class="modal-sub">Importe itens via CSV ou colagem do Excel (TAB/linhas).</div>
+      </div>
+      <button class="iconbtn" data-close="modalIntegration">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="help" style="margin-bottom:10px;">
+        Formato sugerido (colunas): <span class="mono">numero, noticia, titulo, descricao, requerente, atribuidor, dataHora</span><br/>
+        Observação: o número pode ser ignorado (o sistema gera), mas se vier no arquivo ele será usado (desde que válido e dentro do intervalo da faixa).
+      </div>
+
+      <div class="row">
+        <label>CSV (cole aqui)</label>
+        <textarea id="igCsv" placeholder='numero;noticia;titulo;descricao;requerente;atribuidor;dataHora
+910039;12345;teste1;teste1;Juan39;Ivo39;28/01/2026 10:57'></textarea>
+      </div>
+
+      <div class="row">
+        <label>Colar do Excel</label>
+        <textarea id="igExcel" placeholder="Cole linhas com colunas separadas por TAB."></textarea>
+      </div>
+
+      <div class="help">
+        A importação adiciona novos itens na faixa atual.
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn" data-close="modalIntegration">Fechar</button>
+      <button class="btn primary" id="igImportBtn">Importar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/******************************************************************
+ * Storage + Default Data
+ ******************************************************************/
+const LS_KEY = "ergomat_mock_v2";
+
+const DEFAULT_DATA = {
+  programs: [
+    { id:"p1", name:"Programa 1", machines: [] },
+    { id:"p2", name:"Programa 2", machines: [
+      { id:"m1", name:"TND", tag:"tnd", obs:"Faixas por máquina (ambiente separado por faixa)", ranges:[
+        { id:"r1", min:0, noMax:false, max:999999, state:"em_uso", name:"", items:[
+          { id:"i1", numero:"910039", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan39", atribuidor:"Ivo39", dataHora:"28/01/2026 10:57" },
+          { id:"i2", numero:"910038", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan38", atribuidor:"Ivo38", dataHora:"27/01/2026 10:57" },
+          { id:"i3", numero:"910037", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan37", atribuidor:"Ivo37", dataHora:"26/01/2026 10:57" },
+          { id:"i4", numero:"910036", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan36", atribuidor:"Ivo36", dataHora:"25/01/2026 10:57" },
+          { id:"i5", numero:"910035", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan35", atribuidor:"Ivo35", dataHora:"24/01/2026 10:57" },
+          { id:"i6", numero:"910034", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan34", atribuidor:"Ivo34", dataHora:"23/01/2026 10:57" },
+          { id:"i7", numero:"910033", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan33", atribuidor:"Ivo33", dataHora:"22/01/2026 10:57" },
+          { id:"i8", numero:"910032", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan32", atribuidor:"Ivo32", dataHora:"21/01/2026 10:57" },
+          { id:"i9", numero:"910031", noticia:"12345", titulo:"teste1", descricao:"teste1", requerente:"Juan31", atribuidor:"Ivo31", dataHora:"20/01/2026 10:57" }
+        ] }
+      ], currentRangeId: "r1" }
+    ]},
+    { id:"p3", name:"Programa 3", machines: [] }
+  ],
+  ui: {
+    selectedProgramId: "p2",
+    selectedMachineId: "m1",
+    search: ""
+  }
+};
+
+/******************************************************************
+ * Utilities
+ ******************************************************************/
+function uid(prefix){
+  return prefix + Math.random().toString(16).slice(2) + Date.now().toString(16);
+}
+
+function clone(obj){
+  try{ return structuredClone(obj); }catch{ return JSON.parse(JSON.stringify(obj)); }
+}
+
+function load(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return clone(DEFAULT_DATA);
+    const parsed = JSON.parse(raw);
+    if(!parsed.programs || !Array.isArray(parsed.programs)) return clone(DEFAULT_DATA);
+    return parsed;
+  }catch{
+    return clone(DEFAULT_DATA);
+  }
+}
+
+function save(){
+  localStorage.setItem(LS_KEY, JSON.stringify(state));
+}
+
+let state = load();
+ensureDataShape();
+
+/******************************************************************
+ * Helper
+ ******************************************************************/
+function el(id){ return document.getElementById(id); }
+
+function pad6(n){
+  const v = (n === null || typeof n === "undefined") ? "" : (""+n).trim();
+  const num = parseInt(v, 10);
+  if(!isNaN(num)) return (""+num).padStart(6, "0");
+  return escapeHTML(v);
+}
+
+function getProgram(pid){
+  return state.programs.find(p => p.id === pid) || null;
+}
+function getMachine(pid, mid){
+  const p = getProgram(pid);
+  if(!p) return null;
+  return p.machines.find(m => m.id === mid) || null;
+}
+function getRange(pid, mid, rid){
+  const m = getMachine(pid, mid);
+  if(!m) return null;
+  return m.ranges.find(r => r.id === rid) || null;
+}
+function showModal(id){
+  el(id).classList.add("show");
+}
+function hideModal(id){
+  el(id).classList.remove("show");
+}
+
+/******************************************************************
+ * Ensure compatibility
+ ******************************************************************/
+function ensureDataShape(){
+  for(const p of (state.programs||[])){
+    p.machines = p.machines || [];
+    for(const m of p.machines){
+      m.ranges = m.ranges || [];
+      if(typeof m.currentRangeId === "undefined") m.currentRangeId = null;
+      for(const r of m.ranges){
+        r.items = r.items || [];
+        if(!r.state) r.state = "em_uso";
+        if(typeof r.noMax === "undefined") r.noMax = false;
+      }
+      if(m.ranges.length){
+        const exists = m.currentRangeId && m.ranges.some(r=>r.id===m.currentRangeId);
+        if(!exists){
+          const sorted = m.ranges.slice().sort((a,b)=>(a.min??0)-(b.min??0));
+          m.currentRangeId = sorted[0].id;
+        }
+      }else{
+        m.currentRangeId = null;
+      }
+    }
+  }
+}
+
+/******************************************************************
+ * Stats
+ ******************************************************************/
+function machineStats(machine){
+  const totalRanges = machine.ranges.length;
+  const totalItems = machine.ranges.reduce((acc,r)=> acc + (r.items?.length||0), 0);
+  const lastNum = (() => {
+    const nums = [];
+    for(const r of machine.ranges){
+      for(const it of (r.items||[])){
+        const n = +it.numero;
+        if(!isNaN(n)) nums.push(n);
+      }
+    }
+    if(!nums.length) return null;
+    return Math.max(...nums);
+  })();
+  return { totalRanges, totalItems, lastNum };
+}
+
+function programStats(program){
+  const totalMachines = program.machines.length;
+  const totalRanges = program.machines.reduce((acc,m)=> acc + (m.ranges?.length||0), 0);
+  const totalItems = program.machines.reduce((acc,m)=> acc + (m.ranges||[]).reduce((a,r)=> a + (r.items?.length||0), 0), 0);
+  return { totalMachines, totalRanges, totalItems };
+}
+
+/******************************************************************
+ * Search matching
+ ******************************************************************/
+function normalize(s){
+  return (s||"").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+function matchesSearchItem(it, q){
+  const qq = normalize(q);
+  const fields = [
+    it.numero, it.noticia, it.titulo, it.descricao, it.requerente, it.atribuinte, it.atribuidor, it.dataHora
+  ].map(x => normalize(x));
+  return fields.some(f => f.includes(qq));
+}
+
+/******************************************************************
+ * Render Sidebar
+ ******************************************************************/
+function renderSidebar(){
+  const list = el("programList");
+  list.innerHTML = "";
+  for(const p of state.programs){
+    const st = programStats(p);
+    const active = p.id === state.ui.selectedProgramId;
+    const div = document.createElement("div");
+    div.className = "sb-item" + (active ? " active":"");
+    div.setAttribute("data-pid", p.id);
+    div.innerHTML = `
+      <div class="name">
+        <span>${escapeHTML(p.name)}</span>
+        <span class="pill">${st.totalItems}</span>
+      </div>
+      <div class="meta">
+        <span>${st.totalMachines} máquina(s) • ${st.totalRanges} faixa(s)</span>
+        <span></span>
+      </div>
+    `;
+    list.appendChild(div);
+  }
+
+  document.querySelectorAll(".sb-item").forEach(node=>{
+    node.addEventListener("click", ()=>{
+      const pid = node.getAttribute("data-pid");
+      state.ui.selectedProgramId = pid;
+      state.ui.selectedMachineId = null;
+      save();
+      renderAll();
+    });
+  });
+}
+
+/******************************************************************
+ * Views
+ ******************************************************************/
+function programView(program, q){
+  const st = programStats(program);
+
+  let machines = (program.machines||[]).slice();
+  if(q){
+    machines = machines.filter(m=>{
+      const hay = normalize(m.name + " " + (m.tag||"") + " " + (m.obs||""));
+      return hay.includes(normalize(q));
+    });
+  }
+
+  const rows = machines.map(m=>{
+    const ms = machineStats(m);
+    const active = m.id === state.ui.selectedMachineId;
+    return `
+      <div class="mrow ${active ? "active":""}" data-mid="${m.id}">
+        <div class="a">
+          <span>${escapeHTML(m.name)}</span>
+          <span class="pill">${ms.totalItems}</span>
+        </div>
+        <div class="b">
+          <span>${ms.totalRanges} faixa(s)</span>
+          <span>${m.tag ? "/"+escapeHTML(m.tag):""}</span>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="hero">
+      <div>
+        <h1>${escapeHTML(program.name)}</h1>
+        <div class="sub">Escolha uma máquina dentro do programa. As faixas ficam dentro da máquina.</div>
+      </div>
+      <div class="badge">/${program.id}</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; margin-top:14px;">
+      <div class="stat">
+        <div class="muted">Máquinas</div>
+        <div class="value">${st.totalMachines}</div>
+        <div class="muted" style="margin-top:2px; font-size:12px;">Cadastradas neste programa</div>
+      </div>
+      <div class="stat">
+        <div class="muted">Faixas</div>
+        <div class="value">${st.totalRanges}</div>
+        <div class="muted" style="margin-top:2px; font-size:12px;">Somatório de faixas</div>
+      </div>
+      <div class="stat">
+        <div class="muted">Itens</div>
+        <div class="value">${st.totalItems}</div>
+        <div class="muted" style="margin-top:2px; font-size:12px;">Somatório de itens</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="machine-list">
+        <div class="head">
+          <div class="ttl">Máquinas</div>
+          <button class="btn small primary" id="btnCreateMachine">Criar Máquina</button>
+        </div>
+        <div class="body">
+          ${rows || `
+            <div style="padding:12px; color:var(--muted); font-size:13px;">
+              Nenhuma máquina encontrada para a busca atual.
+            </div>
+          `}
+        </div>
+      </div>
+
+      <!-- "Como funciona" removido conforme feedback -->
+      <div class="card" style="min-height:220px;">
+        <div class="card-head">
+          <div class="title">Selecione uma máquina</div>
+          <div class="note">A tela da máquina mostra a tabela grande + painel de faixas na direita.</div>
+        </div>
+        <div style="padding:14px; color:var(--muted); font-size:13px; line-height:1.5;">
+          Selecione uma máquina na lista à esquerda para abrir o ambiente dela.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function toComparableDate(s){
+  if(!s) return NaN;
+  const str = (""+s).trim();
+  const m = str.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}))?/);
+  if(m){
+    const dd = +m[1], mm = +m[2]-1, yyyy = +m[3];
+    const hh = +(m[4]||"0"), mi = +(m[5]||"0");
+    return new Date(yyyy,mm,dd,hh,mi).getTime();
+  }
+  const t = Date.parse(str);
+  return isNaN(t) ? NaN : t;
+}
+
+function rangeNextNumber(range){
+  const nums = [];
+  for(const it of (range.items||[])){
+    const n = +it.numero;
+    if(!isNaN(n)) nums.push(n);
+  }
+  const next = nums.length ? (Math.max(...nums) + 1) : range.min;
+  if(range.noMax) return next;
+  if(next > range.max) return null;
+  return next;
+}
+
+function machineView(program, machine, q){
+  const ms = machineStats(machine);
+
+  const hasRanges = (machine.ranges || []).length > 0;
+  const sortedRanges = (machine.ranges || []).slice().sort((a,b)=>(a.min??0)-(b.min??0));
+  const current = hasRanges ? (machine.ranges.find(r=>r.id===machine.currentRangeId) || sortedRanges[0]) : null;
+  if(current && machine.currentRangeId !== current.id){
+    machine.currentRangeId = current.id;
+    save();
+  }
+
+  const rangeCards = hasRanges ? (() => {
+    const currentId = machine.currentRangeId;
+    const ordered = (machine.ranges||[]).slice().sort((a,b)=>(a.min??0)-(b.min??0));
+    ordered.sort((a,b)=>{
+      const ac = a.id===currentId, bc = b.id===currentId;
+      if(ac && !bc) return -1;
+      if(!ac && bc) return 1;
+      return (a.min??0)-(b.min??0);
+    });
+
+    return ordered.map(r=>{
+      const isCurrent = r.id===currentId;
+      const next = rangeNextNumber(r);
+      const itemsCount = (r.items||[]).length;
+      return `
+        <div class="range-card ${isCurrent ? "active" : ""}" data-set-current-range="${r.id}">
+          <div class="range-topline">
+            <div style="font-family:var(--mono); font-weight:700; color:rgba(255,255,255,.92);">
+              ${pad6(r.min)} – ${r.noMax ? "∞" : pad6(r.max)}
+            </div>
+            ${isCurrent ? `<span class="range-marker">Faixa atual</span>` : ``}
+          </div>
+
+          <div class="muted" style="font-size:12px; line-height:1.35;">
+            <span class="badge"><span class="dot ${r.state==="encerrado" ? "bad":"ok"}"></span>${r.state==="encerrado" ? "Encerrada":"Em uso"}</span>
+            <span class="badge" style="margin-left:6px;"><span class="dot ok"></span>${itemsCount} itens</span>
+          </div>
+
+          <div style="margin-top:10px; font-size:13px; color:rgba(188,255,233,.92);">
+            Próximo: ${next===null ? "<span style='color:rgba(255,120,120,.95);'>limite atingido</span>" : pad6(next)}${r.noMax ? "" : ` <span class="muted">(limite: ${pad6(r.max)})</span>`}
+          </div>
+        </div>
+      `;
+    }).join("");
+  })() : `
+    <div class="muted" style="padding:8px 2px; font-size:13px;">
+      Nenhuma faixa cadastrada nesta máquina ainda.
+    </div>
+  `;
+
+  return `
+    <div class="hero">
+      <div>
+        <h1>${escapeHTML(machine.name)}</h1>
+        <div class="sub">Ambiente por faixa • a tabela abaixo mostra os itens da <b>Faixa Atual</b>.</div>
+      </div>
+      <div class="badge">${program.id}/${machine.tag || machine.id}</div>
+    </div>
+
+    <div class="machine-grid">
+      <!-- LEFT: Big table preview -->
+      <div class="card" style="min-height:0;">
+        <div class="card-head">
+          <div class="title">Itens cadastrados (desta faixa)</div>
+          <div class="note">Mais recentes no topo.</div>
+        </div>
+
+        <div style="padding:12px 14px; display:flex; gap:10px; align-items:center; justify-content:space-between;">
+          <div class="muted" id="mvRangeLine" style="font-size:13px;">
+            ${current ? `Faixa Atual: <b style="color:rgba(255,255,255,.92);">${pad6(current.min)} – ${current.noMax ? "∞" : pad6(current.max)}</b>` : `Selecione ou crie uma faixa para começar.`}
+          </div>
+          <div class="muted" id="mvItemsCountLine" style="font-size:13px;"></div>
+        </div>
+
+        <div style="overflow:auto; max-height: 64vh;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Notícia</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Requerente</th>
+                <th>Atribuidor</th>
+                <th>Data/Hora</th>
+                <th>Status</th>
+                <th style="text-align:right;">Editar</th>
+              </tr>
+            </thead>
+            <tbody id="mvItemsTbody">
+              <tr><td colspan="9" class="muted">Carregando…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- AQUI: botões de cadastro (fora do modal) conforme seu feedback -->
+        <div style="padding:12px 14px; display:flex; gap:10px; justify-content:space-between; flex-wrap:wrap;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn primary" id="mvNewItemBtn" ${current ? "" : "disabled"}>Cadastrar novo item</button>
+            <button class="btn" id="mvIntegrationBtn" ${current ? "" : "disabled"}>Integração de dados</button>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" id="btnBackToProgram">Voltar ao programa</button>
+          </div>
+        </div>
+        <div class="help" id="mvActionHint" style="margin-top:-6px; padding:0 14px 12px 14px;"></div>
+      </div>
+
+      <!-- RIGHT: Summary + ranges -->
+      <div style="min-height:0;">
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px;">
+          <div class="stat">
+            <div class="muted">Total de faixas</div>
+            <div class="value">${ms.totalRanges}</div>
+          </div>
+          <div class="stat">
+            <div class="muted">Itens cadastrados</div>
+            <div class="value">${ms.totalItems}</div>
+          </div>
+          <div class="stat">
+            <div class="muted">Último número usado</div>
+            <div class="value">${ms.lastNum===null ? "—" : pad6(ms.lastNum)}</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px; min-height:0;">
+          <div class="card-head">
+            <div class="title">Faixas</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+              <button class="btn small" id="btnSelectRange" ${hasRanges ? "" : "disabled"}>Selecionar Faixa</button>
+              <button class="btn small" id="btnEditCurrentRange" ${current ? "" : "disabled"}>Editar faixa</button>
+              <button class="btn small danger" id="btnToggleCloseRange" ${current ? "" : "disabled"}>${current && current.state==="encerrado" ? "Reabrir" : "Encerrar"}</button>
+              <button class="btn small primary" id="btnCreateRange">Criar Faixa</button>
+            </div>
+          </div>
+
+          <div style="padding:12px;">
+            <div class="range-stack" id="mvRangeStack">
+              ${rangeCards}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function bindProgramView(program){
+  const btn = el("btnCreateMachine");
+  if(btn){
+    btn.onclick = () => openCreateMachine(program.id);
+  }
+  document.querySelectorAll("[data-mid]").forEach(node=>{
+    node.addEventListener("click", ()=>{
+      const mid = node.getAttribute("data-mid");
+      state.ui.selectedMachineId = mid;
+      save();
+      renderAll();
+    });
+  });
+}
+
+/******************************************************************
+ * Machine view behavior (sem modal "Abrir ambiente da faixa")
+ ******************************************************************/
+function bindMachineView(program, machine){
+  const back = el("btnBackToProgram");
+  if(back){
+    back.onclick = ()=>{
+      state.ui.selectedMachineId = null;
+      save();
+      renderAll();
+    };
+  }
+
+  const createRange = el("btnCreateRange");
+  if(createRange){
+    createRange.onclick = ()=> openCreateRange(program.id, machine.id);
+  }
+
+  const selectBtn = el("btnSelectRange");
+  if(selectBtn){
+    selectBtn.onclick = ()=> openSelectRange(program.id, machine.id);
+  }
+
+  // Editar faixa (da Faixa Atual) fica na direita
+  const editBtn = el("btnEditCurrentRange");
+  if(editBtn){
+    editBtn.onclick = ()=>{
+      if(!machine.currentRangeId) return;
+      openEditRangeFor(program.id, machine.id, machine.currentRangeId, false);
+    };
+  }
+
+  // Encerrar/Reabrir faixa atual (sem modal extra)
+  const toggleBtn = el("btnToggleCloseRange");
+  if(toggleBtn){
+    toggleBtn.onclick = ()=>{
+      if(!machine.currentRangeId) return;
+      const r = getRange(program.id, machine.id, machine.currentRangeId);
+      if(!r) return;
+      r.state = (r.state === "encerrado") ? "em_uso" : "encerrado";
+      save();
+      renderAll();
+    };
+  }
+
+  // Click on a faixa card sets it as Faixa Atual
+  document.querySelectorAll("[data-set-current-range]").forEach(node=>{
+    node.addEventListener("click", ()=>{
+      const rid = node.getAttribute("data-set-current-range");
+      if(!rid) return;
+      machine.currentRangeId = rid;
+      save();
+      renderAll();
+    });
+  });
+
+  // Buttons "Cadastrar novo item" + "Integração de dados" ficam embaixo da tabela grande
+  const newItemBtn = el("mvNewItemBtn");
+  const integrationBtn = el("mvIntegrationBtn");
+
+  const r = machine.currentRangeId ? getRange(program.id, machine.id, machine.currentRangeId) : null;
+
+  if(newItemBtn){
+    newItemBtn.onclick = ()=>{
+      if(!r) return;
+      ctx.programId = program.id;
+      ctx.machineId = machine.id;
+      ctx.rangeId = r.id;
+      openNewItem();
+    };
+  }
+
+  if(integrationBtn){
+    integrationBtn.onclick = ()=>{
+      if(!r) return;
+      ctx.programId = program.id;
+      ctx.machineId = machine.id;
+      ctx.rangeId = r.id;
+      showModal("modalIntegration");
+    };
+  }
+
+  renderMachinePreviewTable(machine, r, program.id);
+  syncMachineActionHint(r);
+}
+
+function syncMachineActionHint(range){
+  const hint = el("mvActionHint");
+  if(!hint) return;
+  if(!range){
+    hint.textContent = "";
+    return;
+  }
+  const next = rangeNextNumber(range);
+  if(range.state === "encerrado"){
+    hint.textContent = "Faixa encerrada: para cadastrar/importar itens, reabra a faixa no painel da direita.";
+  }else if(next === null){
+    hint.textContent = "Limite atingido: não é possível cadastrar novos itens nesta faixa (ajuste/expanda a faixa em “Editar faixa”).";
+  }else{
+    hint.textContent = "";
+  }
+
+  const btnNew = el("mvNewItemBtn");
+  const btnInt = el("mvIntegrationBtn");
+  const disabled = (range.state === "encerrado" || next === null);
+  if(btnNew) btnNew.disabled = disabled;
+  if(btnInt) btnInt.disabled = disabled;
+}
+
+/******************************************************************
+ * Preview table (Faixa Atual)
+ ******************************************************************/
+function renderMachinePreviewTable(machine, range, programId){
+  const tbody = el("mvItemsTbody");
+  const countLine = el("mvItemsCountLine");
+  const rangeLine = el("mvRangeLine");
+
+  if(!tbody) return;
+
+  if(!range){
+    if(rangeLine) rangeLine.innerHTML = `Selecione ou crie uma faixa para começar.`;
+    if(countLine) countLine.textContent = "";
+    tbody.innerHTML = `<tr><td colspan="9" class="muted">Nenhuma faixa selecionada.</td></tr>`;
+    return;
+  }
+
+  if(rangeLine){
+    rangeLine.innerHTML = `Faixa Atual: <b style="color:rgba(255,255,255,.92);">${pad6(range.min)} – ${range.noMax ? "∞" : pad6(range.max)}</b>`;
+  }
+
+  const q = (state.ui.search || "").trim();
+  let items = (range.items || []).slice();
+
+  items.sort((a,b)=>{
+    const na = +a.numero, nb = +b.numero;
+    if(!isNaN(na) && !isNaN(nb) && na !== nb) return nb - na;
+    const da = toComparableDate(a.dataHora), db = toComparableDate(b.dataHora);
+    if(!isNaN(da) && !isNaN(db) && da !== db) return db - da;
+    return (""+b.numero).localeCompare(""+a.numero);
+  });
+
+  if(q){
+    items = items.filter(it => matchesSearchItem(it, q));
+  }
+
+  tbody.innerHTML = "";
+
+  if(!items.length){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td colspan="9" class="muted">Nenhum item cadastrado nesta faixa (ou filtrado pela busca).</td>`;
+    tbody.appendChild(tr);
+  }else{
+    for(const it of items){
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td style="font-family:var(--mono); font-weight:700;">${escapeHTML(it.numero)}</td>
+        <td>${escapeHTML(it.noticia||"")}</td>
+        <td>${escapeHTML(it.titulo||"")}</td>
+        <td>${escapeHTML(it.descricao||"")}</td>
+        <td>${escapeHTML(it.requerente||"")}</td>
+        <td>${escapeHTML(it.atribuinte || it.atribuidor || "")}</td>
+        <td>${escapeHTML(it.dataHora||"")}</td>
+        <td><span class="badge"><span class="dot ok"></span>OK</span></td>
+        <td style="text-align:right;">
+          <button class="btn small" data-edit-item="${it.id}">Editar</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    }
+  }
+
+  const total = (range.items||[]).length;
+  const shown = items.length;
+  if(countLine){
+    countLine.textContent = q ? `Mostrando ${shown} de ${total} item(ns).` : `Total na faixa: ${total} item(ns).`;
+  }
+
+  document.querySelectorAll("[data-edit-item]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const iid = btn.getAttribute("data-edit-item");
+      if(!iid) return;
+      ctx.programId = programId;
+      ctx.machineId = machine.id;
+      ctx.rangeId = range.id;
+      openEditItem(iid);
+    });
+  });
+}
+
+/******************************************************************
+ * Context
+ ******************************************************************/
+let ctx = {
+  programId: null,
+  machineId: null,
+  rangeId: null,
+  itemId: null,
+  returnToSelectRange: false
+};
+
+/******************************************************************
+ * Modals: Create Machine / Create Range
+ ******************************************************************/
+function openCreateMachine(programId){
+  ctx.programId = programId;
+  const p = getProgram(programId);
+  el("cmSub").textContent = `Dentro do ${p?.name || "programa"}`;
+  el("cmName").value = "";
+  el("cmTag").value = "";
+  el("cmObs").value = "";
+  showModal("modalCreateMachine");
+}
+
+el("cmCreateBtn").onclick = () => {
+  const p = getProgram(ctx.programId);
+  if(!p) return;
+  const name = (el("cmName").value || "").trim();
+  const tag = (el("cmTag").value || "").trim();
+  const obs = (el("cmObs").value || "").trim();
+  if(!name){
+    alert("Informe um nome de máquina.");
+    return;
+  }
+  const m = { id: uid("m"), name, tag, obs, ranges: [], currentRangeId: null };
+  p.machines.push(m);
+  state.ui.selectedMachineId = m.id;
+  save();
+  hideModal("modalCreateMachine");
+  renderAll();
+};
+
+function openCreateRange(programId, machineId){
+  ctx.programId = programId;
+  ctx.machineId = machineId;
+  const m = getMachine(programId, machineId);
+  el("crSub").textContent = `Dentro da máquina ${m?.name || ""}`;
+  el("crMin").value = "";
+  el("crNoMax").value = "no";
+  el("crMax").disabled = false;
+  el("crMax").value = "";
+  el("crState").value = "em_uso";
+  el("crName").value = "";
+  showModal("modalCreateRange");
+}
+
+el("crNoMax").addEventListener("change", ()=>{
+  const noMax = el("crNoMax").value === "yes";
+  el("crMax").disabled = noMax;
+  if(noMax) el("crMax").value = "";
+});
+
+el("crCreateBtn").onclick = () => {
+  const m = getMachine(ctx.programId, ctx.machineId);
+  if(!m) return;
+
+  const min = parseInt(el("crMin").value, 10);
+  const noMax = el("crNoMax").value === "yes";
+  const max = noMax ? null : parseInt(el("crMax").value, 10);
+  const stateVal = el("crState").value;
+  const name = (el("crName").value || "").trim();
+
+  if(isNaN(min)){
+    alert("Informe um início (mínimo) válido.");
+    return;
+  }
+  if(!noMax && (isNaN(max) || max < min)){
+    alert("Informe um fim (máximo) válido (>= mínimo).");
+    return;
+  }
+
+  for(const r of m.ranges){
+    const rMin = r.min;
+    const rMax = r.noMax ? Infinity : r.max;
+    const newMin = min;
+    const newMax = noMax ? Infinity : max;
+    const overlaps = !(newMax < rMin || newMin > rMax);
+    if(overlaps){
+      alert("A nova faixa sobrepõe uma faixa existente nesta máquina. Ajuste os valores.");
+      return;
+    }
+  }
+
+  const newRangeId = uid("r");
+  m.ranges.push({
+    id: newRangeId,
+    min,
+    noMax,
+    max,
+    state: stateVal,
+    name,
+    items: []
+  });
+
+  if(!m.currentRangeId) m.currentRangeId = newRangeId;
+
+  save();
+  hideModal("modalCreateRange");
+  renderAll();
+};
+
+/******************************************************************
+ * Select Range modal + "Alterar" dentro da lista
+ ******************************************************************/
+function openSelectRange(programId, machineId){
+  ctx.programId = programId;
+  ctx.machineId = machineId;
+
+  const m = getMachine(programId, machineId);
+  if(!m) return;
+
+  const list = el("srList");
+  if(!list) return;
+
+  const ranges = (m.ranges||[]).slice().sort((a,b)=>(a.min??0)-(b.min??0));
+  list.innerHTML = "";
+
+  if(!ranges.length){
+    list.innerHTML = `<div class="muted" style="padding:10px;">Nenhuma faixa cadastrada.</div>`;
+    el("srSelectBtn").disabled = true;
+  }else{
+    el("srSelectBtn").disabled = false;
+
+    for(const r of ranges){
+      const isCurrent = r.id === m.currentRangeId;
+
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.alignItems = "center";
+      row.style.justifyContent = "space-between";
+      row.style.gap = "12px";
+      row.style.padding = "10px";
+      row.style.borderRadius =_toggle = "12px";
+      row.style.border = "1px solid rgba(255,255,255,.08)";
+      row.style.background = isCurrent ? "rgba(64,245,182,.08)" : "rgba(0,0,0,.16)";
+
+      row.innerHTML = `
+        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; flex:1;">
+          <input type="radio" name="srPick" value="${r.id}" ${isCurrent ? "checked" : ""} />
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <div style="font-family:var(--mono); font-weight:800; color:rgba(255,255,255,.92);">
+              ${pad6(r.min)} – ${r.noMax ? "∞" : pad6(r.max)}
+              ${isCurrent ? `<span class="range-marker" style="margin-left:8px;">Faixa atual</span>` : ``}
+            </div>
+            <div class="muted" style="font-size:12px;">
+              <span class="badge"><span class="dot ${r.state==="encerrado" ? "bad":"ok"}"></span>${r.state==="encerrado" ? "Encerrada":"Em uso"}</span>
+              <span class="badge" style="margin-left:6px;"><span class="dot ok"></span>${(r.items||[]).length} itens</span>
+            </div>
+          </div>
+        </label>
+
+        <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width:120px;">
+          <button class="btn small" data-sr-edit="${r.id}">Alterar</button>
+        </div>
+      `;
+
+      list.appendChild(row);
+    }
+
+    // Bind "Alterar" buttons
+    document.querySelectorAll("[data-sr-edit]").forEach(btn=>{
+      btn.addEventListener("click", (e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        const rid = btn.getAttribute("data-sr-edit");
+        if(!rid) return;
+        // fecha seletor e abre editor; ao salvar volta para o seletor
+        hideModal("modalSelectRange");
+        openEditRangeFor(programId, machineId, rid, true);
+      });
+    });
+  }
+
+  showModal("modalSelectRange");
+}
+
+el("srSelectBtn").onclick = ()=>{
+  const m = getMachine(ctx.programId, ctx.machineId);
+  if(!m) return;
+
+  const picked = document.querySelector('input[name="srPick"]:checked');
+  if(!picked){
+    alert("Selecione uma faixa.");
+    return;
+  }
+  m.currentRangeId = picked.value;
+  save();
+  hideModal("modalSelectRange");
+  renderAll();
+};
+
+/******************************************************************
+ * Edit Range (reutilizado: direita + modal selecionar faixa)
+ ******************************************************************/
+function openEditRangeFor(programId, machineId, rangeId, returnToSelect){
+  ctx.programId = programId;
+  ctx.machineId = machineId;
+  ctx.rangeId = rangeId;
+  ctx.returnToSelectRange = !!returnToSelect;
+
+  const r = getRange(programId, machineId, rangeId);
+  if(!r) return;
+
+  el("erSub").textContent = `Faixa ${r.min} → ${r.noMax ? "∞" : r.max}`;
+  el("erMin").value = r.min;
+  el("erNoMax").value = r.noMax ? "yes" : "no";
+  el("erMax").disabled = r.noMax;
+  el("erMax").value = r.noMax ? "" : r.max;
+  el("erState").value = r.state || "em_uso";
+  el("erName").value = r.name || "";
+  showModal("modalEditRange");
+}
+
+el("erNoMax").addEventListener("change", ()=>{
+  const noMax = el("erNoMax").value === "yes";
+  el("erMax").disabled = noMax;
+  if(noMax) el("erMax").value = "";
+});
+
+el("erSaveBtn").onclick = ()=>{
+  const m = getMachine(ctx.programId, ctx.machineId);
+  const r = getRange(ctx.programId, ctx.machineId, ctx.rangeId);
+  if(!m || !r) return;
+
+  const min = parseInt(el("erMin").value,10);
+  const noMax = el("erNoMax").value === "yes";
+  const max = noMax ? null : parseInt(el("erMax").value,10);
+  const stateVal = el("erState").value;
+  const name = (el("erName").value || "").trim();
+
+  if(isNaN(min)){
+    alert("Informe um início (mínimo) válido.");
+    return;
+  }
+  if(!noMax && (isNaN(max) || max < min)){
+    alert("Informe um fim (máximo) válido (>= mínimo).");
+    return;
+  }
+
+  for(const other of m.ranges){
+    if(other.id === r.id) continue;
+    const oMin = other.min;
+    const oMax = other.noMax ? Infinity : other.max;
+    const newMin = min;
+    const newMax = noMax ? Infinity : max;
+    const overlaps = !(newMax < oMin || newMin > oMax);
+    if(overlaps){
+      alert("O intervalo editado sobrepõe outra faixa existente nesta máquina.");
+      return;
+    }
+  }
+
+  r.min = min;
+  r.noMax = noMax;
+  r.max = max;
+  r.state = stateVal;
+  r.name = name;
+
+  // se a faixa editada for a atual, ok; se não, não muda seleção automaticamente
+  save();
+  hideModal("modalEditRange");
+  renderAll();
+
+  // Se veio do "Selecionar faixa", volta praquele modal
+  if(ctx.returnToSelectRange){
+    ctx.returnToSelectRange = false;
+    openSelectRange(ctx.programId, ctx.machineId);
+  }
+};
+
+/******************************************************************
+ * Item CRUD (na tela principal)
+ ******************************************************************/
+function openNewItem(){
+  const r = getRange(ctx.programId, ctx.machineId, ctx.rangeId);
+  if(!r) return;
+
+  const next = rangeNextNumber(r);
+  if(next === null){
+    alert("Limite atingido. Não é possível cadastrar novo item nesta faixa.");
+    return;
+  }
+  if(r.state === "encerrado"){
+    alert("Faixa encerrada. Reabra para cadastrar itens.");
+    return;
+  }
+
+  ctx.itemId = null;
+  el("itTitle").textContent = "Cadastrar item";
+  el("itSub").textContent = `Faixa ${r.min} → ${r.noMax ? "∞" : r.max}`;
+  el("itNumero").value = next;
+  el("itNoticia").value = "";
+  el("itTitulo").value = "";
+  el("itDescricao").value = "";
+  el("itRequerente").value = "";
+  el("itAtribuidor").value = "";
+  el("itDataHora").value = "";
+  showModal("modalItem");
+}
+
+function openEditItem(itemId){
+  const r = getRange(ctx.programId, ctx.machineId, ctx.rangeId);
+  if(!r) return;
+  const it = (r.items||[]).find(x => x.id === itemId);
+  if(!it) return;
+
+  ctx.itemId = itemId;
+  el("itTitle").textContent = "Editar item";
+  el("itSub").textContent = `Faixa ${r.min} → ${r.noMax ? "∞" : r.max}`;
+  el("itNumero").value = it.numero || "";
+  el("itNoticia").value = it.noticia || "";
+  el("itTitulo").value = it.titulo || "";
+  el("itDescricao").value = it.descricao || "";
+  el("itRequerente").value = it.requerente || "";
+  el("itAtribuidor").value = it.atribuinte || it.atribuidor || "";
+  el("itDataHora").value = it.dataHora || "";
+  showModal("modalItem");
+}
+
+el("itSaveBtn").onclick = ()=>{
+  const r = getRange(ctx.programId, ctx.machineId, ctx.rangeId);
+  if(!r) return;
+
+  const numero = (el("itNumero").value || "").trim();
+  const noticia = (el("itNoticia").value || "").trim();
+  const titulo = (el("itTitulo").value || "").trim();
+  const descricao = (el("itDescricao").value || "").trim();
+  const requerente = (el("itRequerente").value || "").trim();
+  const atribuidor = (el("itAtribuidor").value || "").trim();
+  const dataHora = (el("itDataHora").value || "").trim();
+
+  if(!numero){
+    alert("Número inválido.");
+    return;
+  }
+
+  if(ctx.itemId){
+    const it = (r.items||[]).find(x => x.id === ctx.itemId);
+    if(!it) return;
+    it.numero = numero;
+    it.noticia = noticia;
+    it.titulo = titulo;
+    it.descricao = descricao;
+    it.requerente = requerente;
+    it.atribuidor = atribuidor;
+    it.dataHora = dataHora;
+  }else{
+    r.items.push({
+      id: uid("i"),
+      numero,
+      noticia,
+      titulo,
+      descricao,
+      requerente,
+      atribuidor,
+      dataHora
+    });
+  }
+
+  save();
+  hideModal("modalItem");
+  renderAll();
+};
+
+/******************************************************************
+ * Integration (CSV / Excel paste)
+ ******************************************************************/
+function detectDelimiter(line){
+  if(line.includes(";") && !line.includes(",")) return ";";
+  if(line.includes(";") && line.includes(",")) return (line.split(";").length >= line.split(",").length) ? ";" : ",";
+  return ",";
+}
+
+function parseCSV(text){
+  const lines = (text||"").split(/\r?\n/).filter(l => l.trim().length);
+  if(!lines.length) return [];
+  const delim = detectDelimiter(lines[0]);
+  const rows = [];
+  for(const line of lines){
+    const out = [];
+    let cur = "", inQ = false;
+    for(let i=0;i<line.length;i++){
+      const ch = line[i];
+      if(ch === '"'){
+        if(inQ && line[i+1] === '"'){ cur+='"'; i++; }
+        else inQ = !inQ;
+      }else if(ch === delim && !inQ){
+        out.push(cur);
+        cur = "";
+      }else{
+        cur += ch;
+      }
+    }
+    out.push(cur);
+    rows.push(out.map(s=>s.trim()));
+  }
+  return rows;
+}
+
+function parseExcelPaste(text){
+  const lines = (text||"").split(/\r?\n/).filter(l => l.trim().length);
+  const rows = [];
+  for(const line of lines){
+    rows.push(line.split("\t").map(s=>s.trim()));
+  }
+  return rows;
+}
+
+function normalizeHeader(h){
+  return (h||"").toLowerCase()
+    .replaceAll("í","i").replaceAll("ã","a").replaceAll("á","a").replaceAll("à","a").replaceAll("â","a")
+    .replaceAll("é","e").replaceAll("ê","e")
+    .replaceAll("ó","o").replaceAll("ô","o")
+    .replaceAll("ç","c")
+    .trim();
+}
+
+el("igImportBtn").onclick = ()=>{
+  const r = getRange(ctx.programId, ctx.machineId, ctx.rangeId);
+  if(!r){
+    alert("Selecione uma faixa primeiro.");
+    return;
+  }
+  if(r.state === "encerrado"){
+    alert("Faixa encerrada. Reabra para importar itens.");
+    return;
+  }
+
+  const csv = el("igCsv").value || "";
+  const excel = el("igExcel").value || "";
+  let rows = [];
+  if(csv.trim()) rows = parseCSV(csv);
+  else if(excel.trim()) rows = parseExcelPaste(excel);
+  else{
+    alert("Cole CSV ou dados do Excel.");
+    return;
+  }
+
+  if(!rows.length){
+    alert("Sem dados.");
+    return;
+  }
+
+  const header = rows[0].map(normalizeHeader);
+  const hasHeader = header.some(h => ["numero","noticia","titulo","descricao","requerente","atribuidor","atribuinte","datahora","data/hora","data"].includes(h));
+  let startIndex = 0;
+  let map = {};
+  if(hasHeader){
+    startIndex = 1;
+    header.forEach((h, idx)=>{ map[h] = idx; });
+  }
+
+  function col(name){
+    const variants = {
+      numero:["numero","número","num"],
+      noticia:["noticia","notícia"],
+      titulo:["titulo","título"],
+      descricao:["descricao","descrição","desc"],
+      requerente:["requerente","req"],
+      atribuidor:["atribuidor","atribuinte","atrib"],
+      dataHora:["datahora","data/hora","data"]
+    };
+    const keys = variants[name] || [name];
+    for(const k of keys){
+      if(map[k] !== undefined) return map[k];
+    }
+    return null;
+  }
+
+  let imported = 0;
+  for(let i=startIndex;i<rows.length;i++){
+    const row = rows[i];
+    const idxNumero = hasHeader ? col("numero") : 0;
+    const idxNoticia = hasHeader ? col("noticia") : 1;
+    const idxTitulo = hasHeader ? col("titulo") : 2;
+    const idxDesc = hasHeader ? col("descricao") : 3;
+    const idxReq = hasHeader ? col("requerente") : 4;
+    const idxAtr = hasHeader ? col("atribuidor") : 5;
+    const idxData = hasHeader ? col("dataHora") : 6;
+
+    const numero = (idxNumero!==null && row[idxNumero]!==undefined) ? row[idxNumero] : "";
+    const noticia = (idxNoticia!==null && row[idxNoticia]!==undefined) ? row[idxNoticia] : "";
+    const titulo = (idxTitulo!==null && row[idxTitulo]!==undefined) ? row[idxTitulo] : "";
+    const descricao = (idxDesc!==null && row[idxDesc]!==undefined) ? row[idxDesc] : "";
+    const requerente = (idxReq!==null && row[idxReq]!==undefined) ? row[idxReq] : "";
+    const atribuidor = (idxAtr!==null && row[idxAtr]!==undefined) ? row[idxAtr] : "";
+    const dataHora = (idxData!==null && row[idxData]!==undefined) ? row[idxData] : "";
+
+    let finalNum = (numero||"").trim();
+    if(!finalNum){
+      const next = rangeNextNumber(r);
+      if(next === null) break;
+      finalNum = ""+next;
+    }else{
+      const n = parseInt(finalNum, 10);
+      if(isNaN(n)) continue;
+      if(n < r.min) continue;
+      if(!r.noMax && n > r.max) continue;
+    }
+
+    r.items.push({
+      id: uid("i"),
+      numero: finalNum,
+      noticia,
+      titulo,
+      descricao,
+      requerente,
+      atribuidor,
+      dataHora
+    });
+    imported++;
+  }
+
+  save();
+  hideModal("modalIntegration");
+  if(imported){
+    alert(`Importado(s): ${imported} item(ns).`);
+  }else{
+    alert("Nenhum item importado (verifique formato/limites).");
+  }
+  renderAll();
+};
+
+/******************************************************************
+ * Render root
+ ******************************************************************/
+function renderAll(){
+  renderSidebar();
+
+  const pid = state.ui.selectedProgramId;
+  const program = getProgram(pid) || state.programs[0];
+  state.ui.selectedProgramId = program.id;
+
+  const q = (state.ui.search || "").trim();
+  const mid = state.ui.selectedMachineId;
+  const machine = mid ? getMachine(program.id, mid) : null;
+
+  el("crumb").textContent = machine
+    ? `${program.name} • ${machine.name} • Faixas por máquina (ambiente separado por faixa)`
+    : `${program.name} • Escolha uma máquina`;
+
+  const view = el("view");
+  if(machine){
+    view.innerHTML = machineView(program, machine, q);
+    bindMachineView(program, machine);
+  }else{
+    view.innerHTML = programView(program, q);
+    bindProgramView(program);
+  }
+
+  save();
+}
+
+el("searchInput").addEventListener("input", ()=>{
+  state.ui.search = el("searchInput").value || "";
+  save();
+  renderAll();
+});
+
+el("btnReset").onclick = ()=>{
+  if(confirm("Resetar os dados do mock? Isso limpa o localStorage.")){
+    localStorage.removeItem(LS_KEY);
+    state = clone(DEFAULT_DATA);
+    ensureDataShape();
+    el("searchInput").value = "";
+    state.ui.search = "";
+    save();
+    renderAll();
+  }
+};
+
+// close modals
+document.querySelectorAll("[data-close]").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const id = btn.getAttribute("data-close");
+    hideModal(id);
+  });
+});
+document.querySelectorAll(".overlay").forEach(ov=>{
+  ov.addEventListener("click", (e)=>{
+    if(e.target === ov){
+      ov.classList.remove("show");
+    }
+  });
+});
+
+/******************************************************************
+ * Safe HTML escaping
+ ******************************************************************/
+function escapeHTML(s){
+  return (s ?? "").toString()
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+
+// Boot
+el("searchInput").value = state.ui.search || "";
+renderAll();
+</script>
+
+</body>
+</html>
