@@ -1,0 +1,306 @@
+<!-- renderizacao.html (COMPLETO) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Renderização | Juan Carlos Hernandez</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS desta página (tema escuro) -->
+  <link rel="stylesheet" href="renderizacao.css" />
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">Juan Carlos</div>
+
+    <div class="top-actions">
+      <a class="btn ghost" href="index.html">← Voltar</a>
+      <a class="btn" href="#galeria">Ver galeria</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="kicker">Renderização</p>
+    <h1>Visualização realista com estética de software.</h1>
+    <p class="subhead">
+      Uma página escura inspirada no SolidWorks Visualize, mesclada com a pegada “render studio” do Blender:
+      materiais, iluminação, pós-processo e apresentação.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn" href="#workflow">Pipeline</a>
+      <a class="btn ghost" href="#galeria">Projetos</a>
+    </div>
+
+    <!-- faixa de “UI” simulando software -->
+    <div class="ui-sim">
+      <div class="ui-left">
+        <div class="chip">Scene</div>
+        <div class="chip">Materials</div>
+        <div class="chip">Decals</div>
+        <div class="chip">Camera</div>
+        <div class="chip">Render</div>
+      </div>
+
+      <div class="ui-right">
+        <div class="status">
+          <span class="dot"></span>
+          <span>GPU Preview</span>
+        </div>
+        <button class="mini-btn" type="button" id="toggleGlow">Toggle Glow</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFLOW -->
+  <section class="section" id="workflow">
+    <div class="section-head">
+      <h2>Pipeline.</h2>
+      <p>Do CAD ao render final, com consistência visual.</p>
+    </div>
+
+    <div class="grid two">
+      <article class="card">
+        <span class="tag">MODELAGEM</span>
+        <h3>CAD → Visual</h3>
+        <p>
+          Preparação do modelo, limpeza, organização de submontagens, e configuração de materiais por intenção
+          de fabricação (plástico, metal, borracha, vidro, etc.).
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">Creo</span>
+          <span class="pill">SolidWorks</span>
+          <span class="pill">Paramétrico</span>
+          <span class="pill">BOM</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag">RENDER</span>
+        <h3>Materiais + Luz + Pós</h3>
+        <p>
+          Setup de HDRI/áreas, ajuste de roughness/metallic, decals, depth of field, e pós (curvas, bloom,
+          sharpen, vinheta) para um resultado com “cara de produto”.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">SolidWorks Visualize</span>
+          <span class="pill">Blender</span>
+          <span class="pill">ACES</span>
+          <span class="pill">DOF</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="note">
+      Dica: para manter performance e qualidade, eu separo “preview” e “final”: preview em amostras baixas e final
+      com denoise e clamp controlado.
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="section" id="galeria">
+    <div class="section-head">
+      <h2>Galeria.</h2>
+      <p>Clique para abrir em tela cheia.</p>
+    </div>
+
+    <div class="gallery">
+      <!-- CARD 01 -->
+      <button class="shot" type="button"
+        data-title="Produto com corte / eletrônica"
+        data-sub="Materiais: plástico + PCB • DOF • iluminação suave"
+        data-img="assets/renders/render-01.jpg">
+        <div class="shot-img" style="--img:url('assets/renders/render-01.jpg');"></div>
+        <div class="shot-bar">
+          <div>
+            <p class="shot-title">Produto com corte</p>
+            <p class="shot-sub">Plástico + PCB • DOF</p>
+          </div>
+          <span class="shot-open">Abrir</span>
+        </div>
+      </button>
+
+      <!-- CARD 02 -->
+      <button class="shot" type="button"
+        data-title="Explodido técnico"
+        data-sub="Apresentação • leitura de montagem • contraste"
+        data-img="assets/renders/render-02.jpg">
+        <div class="shot-img" style="--img:url('assets/renders/render-02.jpg');"></div>
+        <div class="shot-bar">
+          <div>
+            <p class="shot-title">Explodido técnico</p>
+            <p class="shot-sub">Montagem • contraste</p>
+          </div>
+          <span class="shot-open">Abrir</span>
+        </div>
+      </button>
+
+      <!-- CARD 03 -->
+      <button class="shot" type="button"
+        data-title="Peça usinada"
+        data-sub="Metal • micro-roughness • highlights controlados"
+        data-img="assets/renders/render-03.jpg">
+        <div class="shot-img" style="--img:url('assets/renders/render-03.jpg');"></div>
+        <div class="shot-bar">
+          <div>
+            <p class="shot-title">Peça usinada</p>
+            <p class="shot-sub">Metal • highlights</p>
+          </div>
+          <span class="shot-open">Abrir</span>
+        </div>
+      </button>
+
+      <!-- CARD 04 -->
+      <button class="shot" type="button"
+        data-title="Cena de produto (studio)"
+        data-sub="Fundo gradiente • bloom sutil • ACES"
+        data-img="assets/renders/render-04.jpg">
+        <div class="shot-img" style="--img:url('assets/renders/render-04.jpg');"></div>
+        <div class="shot-bar">
+          <div>
+            <p class="shot-title">Cena studio</p>
+            <p class="shot-sub">Gradiente • ACES</p>
+          </div>
+          <span class="shot-open">Abrir</span>
+        </div>
+      </button>
+    </div>
+
+    <div class="section-foot">
+      <a class="btn ghost" href="#workflow">Ver pipeline</a>
+      <a class="btn" href="#contato">Contato</a>
+    </div>
+  </section>
+
+  <!-- “DEMO” VÍDEO / PLACEHOLDER -->
+  <section class="section" id="contato">
+    <div class="section-head">
+      <h2>Entrega.</h2>
+      <p>Render, vídeo curto e imagens para proposta.</p>
+    </div>
+
+    <div class="grid two">
+      <article class="card">
+        <span class="tag">OUTPUT</span>
+        <h3>O que eu entrego</h3>
+        <ul class="list">
+          <li>Imagens em alta (PNG/JPG) e variações de ângulo</li>
+          <li>Vídeo curto (turntable / sequência) quando necessário</li>
+          <li>Versões: limpo / com chamadas / explodido</li>
+          <li>Padronização visual para portfólio e proposta</li>
+        </ul>
+
+        <div class="pill-row">
+          <span class="pill">4K</span>
+          <span class="pill">Transparência</span>
+          <span class="pill">Turntable</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag">CONTATO</span>
+        <h3>Vamos montar a vitrine do seu produto</h3>
+        <p>
+          Se quiser, eu organizo os renders por categoria (peças usinadas, conjuntos, produtos com corte),
+          mantendo o mesmo padrão do seu portfólio.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn" href="mailto:seuemail@exemplo.com">Enviar e-mail</a>
+          <a class="btn ghost" href="index.html">Voltar para Home</a>
+        </div>
+
+        <p class="small-muted">
+          Troque o e-mail acima pelo seu. Se preferir, posso colocar botões para LinkedIn/WhatsApp.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© <span id="year"></span> Juan Carlos Hernandez</p>
+</footer>
+
+<!-- MODAL (LIGHTBOX) -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close="1"></div>
+
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Visualização do render">
+    <div class="modal-top">
+      <div class="modal-text">
+        <p class="modal-title" id="modalTitle">Título</p>
+        <p class="modal-sub" id="modalSub">Sub</p>
+      </div>
+      <button class="modal-close" type="button" data-close="1" aria-label="Fechar">×</button>
+    </div>
+
+    <div class="modal-media">
+      <img id="modalImg" alt="Render em tela cheia" />
+    </div>
+  </div>
+</div>
+
+<script>
+  // ano
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // glow toggle (efeito blender-ish)
+  const toggleGlow = document.getElementById("toggleGlow");
+  toggleGlow?.addEventListener("click", () => {
+    document.body.classList.toggle("glow");
+  });
+
+  // modal galeria
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modalImg");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalSub = document.getElementById("modalSub");
+
+  function openModal({title, sub, img}){
+    modalTitle.textContent = title || "Render";
+    modalSub.textContent = sub || "";
+    modalImg.src = img || "";
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.documentElement.classList.add("lock");
+  }
+
+  function closeModal(){
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.documentElement.classList.remove("lock");
+    modalImg.src = "";
+  }
+
+  document.querySelectorAll(".shot").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      openModal({
+        title: btn.dataset.title,
+        sub: btn.dataset.sub,
+        img: btn.dataset.img
+      });
+    });
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target && e.target.dataset && e.target.dataset.close) closeModal();
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+</script>
+
+</body>
+</html>

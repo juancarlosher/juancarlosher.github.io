@@ -1,0 +1,260 @@
+<!-- coordenacaotecnica.html (COMPLETO) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Coordenação Técnica | Juan Carlos Hernandez</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS desta página (tema claro, consistente com as outras) -->
+  <link rel="stylesheet" href="coordenacaotecnica.css" />
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">Juan Carlos</div>
+
+    <div class="top-actions">
+      <a class="btn ghost" href="index.html">← Voltar</a>
+      <a class="btn" href="#conteudo">Ver conteúdo</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="kicker">Coordenação técnica</p>
+    <h1>Alinhamento, padrão e entrega no prazo.</h1>
+    <p class="subhead">
+      Coordenação técnica com foco em clareza de requisitos, qualidade de modelos e consistência de documentação.
+      Aqui entra controle por planilhas (códigos e rastreabilidade) e condução de equipe CAD internacional.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn" href="#controle">Controle de códigos</a>
+      <a class="btn ghost" href="#equipe">Equipe CAD</a>
+    </div>
+
+    <!-- mini barra “painel” -->
+    <div class="ui-sim" role="region" aria-label="Painel de coordenação">
+      <div class="ui-left">
+        <span class="chip">Requisitos</span>
+        <span class="chip">Padrão</span>
+        <span class="chip excel">Excel</span>
+        <span class="chip">Qualidade</span>
+      </div>
+
+      <div class="ui-right">
+        <div class="status">
+          <span class="dot"></span>
+          <span>Revisão em andamento</span>
+        </div>
+        <button class="mini-btn" type="button" id="toggleNotes">Toggle Notes</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <section class="section" id="conteudo">
+    <div class="section-head">
+      <h2>Visão geral.</h2>
+      <p>Como eu mantenho consistência entre pessoas, modelos e documentação.</p>
+    </div>
+
+    <div class="grid three">
+      <article class="card">
+        <span class="tag">PADRÃO</span>
+        <h3>Requisitos claros</h3>
+        <p>
+          Definição objetiva do que é “aceitável”: nomeação, referências, cotas críticas, tolerâncias,
+          organização de features e estrutura de montagem.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Checklist</span>
+          <span class="pill">Templates</span>
+          <span class="pill">Boas práticas</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag">QUALIDADE</span>
+        <h3>Revisões com critério</h3>
+        <p>
+          Revisão técnica para evitar retrabalho: interferências, coerência de datums, intenção de montagem,
+          simplificações e documentação pronta para manufatura.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Revisão</span>
+          <span class="pill">Interferência</span>
+          <span class="pill">Documentação</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag">RASTREIO</span>
+        <h3>Controle e rastreabilidade</h3>
+        <p>
+          Controle de códigos e histórico: quem criou, quando, por quê, qual revisão e onde a peça é usada.
+          Mantém o “cadastro” vivo e confiável.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Código</span>
+          <span class="pill">Revisão</span>
+          <span class="pill">Histórico</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="note" id="notesBox">
+      Minha prioridade é reduzir variação entre pessoas e garantir que o resultado final seja previsível:
+      o modelo chega “pronto para uso”, sem depender de interpretações.
+    </div>
+  </section>
+
+  <!-- CONTROLE EXCEL -->
+  <section class="section" id="controle">
+    <div class="section-head">
+      <h2>Controle de códigos.</h2>
+      <p>Um painel simples para padronizar cadastro e reduzir erros.</p>
+    </div>
+
+    <article class="feature-card">
+      <header class="feature-head">
+        <div>
+          <span class="feature-tag excel">EXCEL</span>
+          <h3 class="feature-title">Sistema de codificação e cadastro de produtos</h3>
+          <p class="feature-sub">
+            Planilha com fluxo guiado: seleção, geração do próximo código, campos obrigatórios e lista rastreável.
+          </p>
+        </div>
+
+        <div class="feature-meta">
+          <span class="pill">Prefixos</span>
+          <span class="pill">Histórico</span>
+          <span class="pill">Validação</span>
+          <span class="pill">VBA</span>
+        </div>
+      </header>
+
+      <div class="feature-body">
+        <div class="media-grid">
+          <div class="preview-box excel">
+            <span class="box-label">Preview (Excel)</span>
+            <img src="assets/coordenacao/excel-codigos.png" alt="Excel - Controle de Códigos" loading="lazy" />
+          </div>
+
+          <div class="detail-box">
+            <h4>O que esse controle resolve</h4>
+            <ul class="list">
+              <li>Evita duplicidade de códigos e nomes inconsistentes</li>
+              <li>Organiza por prefixos/linhas (ex.: famílias e máquinas)</li>
+              <li>Registra quem cadastrou e quando (rastreabilidade)</li>
+              <li>Facilita busca e evita “cadastro perdido”</li>
+            </ul>
+
+            <div class="cta-row">
+              <a class="btn small" href="#">Abrir detalhes</a>
+              <a class="btn ghost small" href="#">Baixar exemplo</a>
+            </div>
+
+            <p class="small-muted">
+              Troque a imagem por um print real do seu Excel em
+              <strong>assets/coordenacao/excel-codigos.png</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- EQUIPE -->
+  <section class="section" id="equipe">
+    <div class="section-head">
+      <h2>Equipe CAD internacional.</h2>
+      <p>Condução técnica para garantir padrão, qualidade e integração.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <article class="team-card">
+        <header class="team-head">
+          <div>
+            <span class="team-tag">EQUIPE</span>
+            <h3 class="team-title">Coordenação de projetistas CAD (internacional)</h3>
+            <p class="team-sub">
+              Acompanhamento técnico diário para alinhar entregas, reduzir retrabalho e manter o padrão interno.
+            </p>
+          </div>
+          <div class="team-meta">
+            <span class="pill">Requisitos</span>
+            <span class="pill">Qualidade</span>
+            <span class="pill">Integração</span>
+          </div>
+        </header>
+
+        <div class="team-body">
+          <div class="team-panels">
+            <div class="panel">
+              <h4>Como eu organizo</h4>
+              <ul class="list">
+                <li>Checklist de entrega (modelagem, montagem, desenho)</li>
+                <li>Padronização de nomes, datums e estrutura de features</li>
+                <li>Separação clara: “o que é obrigatório” vs “o que é recomendado”</li>
+                <li>Revisões rápidas para destravar o fluxo</li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <h4>Como eu garanto qualidade</h4>
+              <ul class="list">
+                <li>Revisão de coerência e intenção de montagem</li>
+                <li>Verificação de interferências e referências externas</li>
+                <li>Consistência de templates de desenho e anotações</li>
+                <li>Feedback com exemplos e correção objetiva</li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <h4>Resultado na prática</h4>
+              <ul class="list">
+                <li>Modelos mais consistentes, fáceis de revisar e reutilizar</li>
+                <li>Menos variação entre projetistas</li>
+                <li>Integração mais suave com o processo interno</li>
+                <li>Redução de “vai e volta” por detalhes básicos</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="team-footer">
+            <a class="btn" href="index.html">Voltar para Home</a>
+            <a class="btn ghost" href="#controle">Ver o Excel</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© <span id="year"></span> Juan Carlos Hernandez</p>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Toggle notes (sutil)
+  const toggleNotes = document.getElementById("toggleNotes");
+  const notesBox = document.getElementById("notesBox");
+  toggleNotes?.addEventListener("click", () => {
+    notesBox.classList.toggle("off");
+  });
+</script>
+
+</body>
+</html>

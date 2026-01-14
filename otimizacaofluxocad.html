@@ -1,0 +1,328 @@
+<!-- otimizacaofluxocad.html (COMPLETO) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Otimização do Fluxo CAD + Automação | Juan Carlos Hernandez</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS desta página (tema claro, “programação + Excel”) -->
+  <link rel="stylesheet" href="otimizacaofluxocad.css" />
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">Juan Carlos</div>
+
+    <div class="top-actions">
+      <a class="btn ghost" href="index.html">← Voltar</a>
+      <a class="btn" href="#projetos">Ver projetos</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="kicker">Fluxo CAD + Automação</p>
+    <h1>Menos retrabalho. Mais consistência.</h1>
+    <p class="subhead">
+      Integração CAD + planilhas + scripts para padronizar cadastro, reduzir erro manual e acelerar documentação.
+      A vibe aqui é “código + Excel”: visual limpo, grids e previews reais.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn" href="#pipeline">Pipeline</a>
+      <a class="btn ghost" href="#projetos">Cases</a>
+    </div>
+
+    <!-- mini barra “IDE + Excel” -->
+    <div class="ui-sim" role="region" aria-label="Simulação de interface">
+      <div class="ui-left">
+        <span class="chip excel">Excel</span>
+        <span class="chip cad">CAD</span>
+        <span class="chip py">Python</span>
+        <span class="chip data">Dados</span>
+      </div>
+
+      <div class="ui-right">
+        <div class="status">
+          <span class="dot"></span>
+          <span>Automação ativa</span>
+        </div>
+        <button class="mini-btn" type="button" id="toggleGrid">Toggle Grid</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="section" id="pipeline">
+    <div class="section-head">
+      <h2>Pipeline.</h2>
+      <p>Como a automação entra no seu processo.</p>
+    </div>
+
+    <div class="grid three">
+      <article class="card">
+        <span class="tag">ENTRADA</span>
+        <h3>Padronizar</h3>
+        <p>
+          Formulários, validação e listas controladas para manter o cadastro limpo e evitar
+          divergência de nomes, códigos e descrições.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Validação</span>
+          <span class="pill">Campos obrigatórios</span>
+          <span class="pill">Padrão</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag">PROCESSO</span>
+        <h3>Automatizar</h3>
+        <p>
+          Geração automática de códigos, rastreabilidade, templates e criação de listas filtradas
+          por máquina/família para acelerar o fluxo.
+        </p>
+        <div class="pill-row">
+          <span class="pill">VBA</span>
+          <span class="pill">Templates</span>
+          <span class="pill">Rastreável</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag">SAÍDA</span>
+        <h3>Integrar</h3>
+        <p>
+          Integração com CAD e scripts para organizar exportações, renomear arquivos, gerar relatórios,
+          e preparar documentação para proposta/manufatura.
+        </p>
+        <div class="pill-row">
+          <span class="pill">CAD</span>
+          <span class="pill">Python</span>
+          <span class="pill">Relatórios</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="note">
+      O objetivo aqui não é “automatizar tudo”: é automatizar o que gera erro/retrabalho e criar um padrão que
+      qualquer pessoa siga sem pensar.
+    </div>
+  </section>
+
+  <!-- PROJETOS / CASES -->
+  <section class="section" id="projetos">
+    <div class="section-head">
+      <h2>Cases.</h2>
+      <p>3 previews estilo Excel + 1 preview estilo Python.</p>
+    </div>
+
+    <div class="cases-grid">
+
+      <!-- CASE 01 — EXCEL -->
+      <article class="case-card">
+        <header class="case-head">
+          <div>
+            <span class="case-tag excel">EXCEL</span>
+            <h3 class="case-title">Cadastro com códigos automáticos</h3>
+            <p class="case-sub">
+              Geração do próximo código, histórico em ordem, e filtros por máquina/família.
+            </p>
+          </div>
+
+          <div class="case-meta">
+            <span class="pill">VBA</span>
+            <span class="pill">Validação</span>
+            <span class="pill">Prefixo</span>
+          </div>
+        </header>
+
+        <div class="case-body">
+          <div class="preview-grid">
+            <div class="preview-box excel">
+              <span class="box-label">Preview (Excel)</span>
+              <img src="assets/automacao/excel-01.png" alt="Preview Excel 01" loading="lazy" />
+            </div>
+
+            <div class="detail-box">
+              <h4>O que foi otimizado</h4>
+              <ul class="list">
+                <li>Código incremental automático (ex.: 000001, 000002…)</li>
+                <li>Campos “travados” e lista controlada para reduzir erro</li>
+                <li>Registro rastreável (quem cadastrou + data)</li>
+                <li>Organização por prefixos/abas</li>
+              </ul>
+
+              <div class="cta-row">
+                <a class="btn small" href="#">Abrir detalhes</a>
+                <a class="btn ghost small" href="#">Baixar exemplo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CASE 02 — EXCEL -->
+      <article class="case-card">
+        <header class="case-head">
+          <div>
+            <span class="case-tag excel">EXCEL</span>
+            <h3 class="case-title">Planilhas de cálculo integradas</h3>
+            <p class="case-sub">
+              Engenharia aplicada dentro da planilha com inputs claros e resultados prontos para relatório.
+            </p>
+          </div>
+
+          <div class="case-meta">
+            <span class="pill">Fórmulas</span>
+            <span class="pill">Relatório</span>
+            <span class="pill">Padronização</span>
+          </div>
+        </header>
+
+        <div class="case-body">
+          <div class="preview-grid">
+            <div class="preview-box excel">
+              <span class="box-label">Preview (Excel)</span>
+              <img src="assets/automacao/excel-02.png" alt="Preview Excel 02" loading="lazy" />
+            </div>
+
+            <div class="detail-box">
+              <h4>O que foi otimizado</h4>
+              <ul class="list">
+                <li>Inputs com validação e legenda (sem “planilha confusa”)</li>
+                <li>Resultados prontos para comparação e decisão</li>
+                <li>Campos com unidades e nomenclatura consistente</li>
+                <li>Estrutura pronta para virar “modelo” reutilizável</li>
+              </ul>
+
+              <div class="cta-row">
+                <a class="btn small" href="#">Abrir detalhes</a>
+                <a class="btn ghost small" href="#">Baixar exemplo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CASE 03 — EXCEL -->
+      <article class="case-card">
+        <header class="case-head">
+          <div>
+            <span class="case-tag excel">EXCEL</span>
+            <h3 class="case-title">Dashboards e indicadores</h3>
+            <p class="case-sub">
+              Estrutura para visualizar gargalos, variações e performance (com dados mínimos).
+            </p>
+          </div>
+
+          <div class="case-meta">
+            <span class="pill">KPIs</span>
+            <span class="pill">Gráficos</span>
+            <span class="pill">Clareza</span>
+          </div>
+        </header>
+
+        <div class="case-body">
+          <div class="preview-grid">
+            <div class="preview-box excel">
+              <span class="box-label">Preview (Excel)</span>
+              <img src="assets/automacao/excel-03.png" alt="Preview Excel 03" loading="lazy" />
+            </div>
+
+            <div class="detail-box">
+              <h4>O que foi otimizado</h4>
+              <ul class="list">
+                <li>Indicadores com leitura rápida (sem poluição visual)</li>
+                <li>Campos para entrada mínima e resultado máximo</li>
+                <li>Dashboards replicáveis para outras áreas</li>
+                <li>Organização por abas com finalidade clara</li>
+              </ul>
+
+              <div class="cta-row">
+                <a class="btn small" href="#">Abrir detalhes</a>
+                <a class="btn ghost small" href="#">Baixar exemplo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CASE 04 — PYTHON -->
+      <article class="case-card">
+        <header class="case-head">
+          <div>
+            <span class="case-tag py">PYTHON</span>
+            <h3 class="case-title">Automação com scripts e integração</h3>
+            <p class="case-sub">
+              Scripts para organizar dados, gerar relatórios, preparar arquivos e reduzir etapas repetitivas.
+            </p>
+          </div>
+
+          <div class="case-meta">
+            <span class="pill">Python</span>
+            <span class="pill">Integração</span>
+            <span class="pill">Batch</span>
+          </div>
+        </header>
+
+        <div class="case-body">
+          <div class="preview-grid">
+            <div class="preview-box code">
+              <span class="box-label">Preview (Python)</span>
+              <img src="assets/automacao/python-01.png" alt="Preview Python 01" loading="lazy" />
+            </div>
+
+            <div class="detail-box">
+              <h4>O que foi otimizado</h4>
+              <ul class="list">
+                <li>Scripts para leitura/organização de dados</li>
+                <li>Geração automática de saídas (relatórios, listas, pastas)</li>
+                <li>Padronização de nomes e versões</li>
+                <li>Base pronta para integrar com CAD e Excel</li>
+              </ul>
+
+              <div class="cta-row">
+                <a class="btn small" href="#">Abrir detalhes</a>
+                <a class="btn ghost small" href="#">Ver código</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="section-foot">
+      <a class="btn ghost" href="#pipeline">Ver pipeline</a>
+      <a class="btn" href="index.html">Voltar para Home</a>
+    </div>
+
+    <p class="small-muted">
+      Troque os previews pelos seus arquivos reais: <strong>assets/automacao/excel-01.png</strong>, <strong>excel-02.png</strong>, <strong>excel-03.png</strong> e <strong>python-01.png</strong>.
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© <span id="year"></span> Juan Carlos Hernandez</p>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Toggle de “grid” (leve, estilo editor)
+  const toggleGrid = document.getElementById("toggleGrid");
+  toggleGrid?.addEventListener("click", () => {
+    document.body.classList.toggle("grid-on");
+  });
+</script>
+
+</body>
+</html>
