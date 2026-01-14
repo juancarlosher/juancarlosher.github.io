@@ -118,7 +118,7 @@
         <header class="project-head">
           <div>
             <span class="project-tag">CONJUNTO</span>
-            <h3 class="project-title">Conjunto com montagem guiada</h3>
+            <h3 class="project-title">Estudo de validação de posicionamento de mola a gás.</h3>
             <p class="project-sub">Encaixes e sequência de montagem.</p>
           </div>
           <div class="project-meta">
@@ -131,13 +131,13 @@
         <div class="project-body">
           <div class="media-grid">
             <div class="media-box">
-              <span class="box-label">Foto (real)</span>
-              <img src="assets/projetos/projeto-02-real.jpg" alt="Projeto 02 - Foto real" loading="lazy" />
+              <span class="box-label">Imagem 1</span>
+              <img src="assets/projetos/projeto-02-1.jpg" alt="Projeto 02 - Foto real" loading="lazy" />
             </div>
 
             <div class="media-box">
-              <span class="box-label">Imagem (CAD)</span>
-              <img src="assets/projetos/projeto-02-cad.jpg" alt="Projeto 02 - CAD" loading="lazy" />
+              <span class="box-label">Imagem 2</span>
+              <img src="assets/projetos/projeto-02-2.jpg" alt="Projeto 02 - CAD" loading="lazy" />
             </div>
 
             <div class="media-box">
@@ -155,7 +155,7 @@
         <header class="project-head">
           <div>
             <span class="project-tag">ESTRUTURAL</span>
-            <h3 class="project-title">Peça validada estruturalmente</h3>
+            <h3 class="project-title">Análise da vida útil de rolamentos em eixos-árvore de tornos CNC</h3>
             <p class="project-sub">Rigidez, massa e regiões críticas.</p>
           </div>
           <div class="project-meta">
@@ -168,36 +168,176 @@
         <div class="project-body">
           <div class="media-grid">
             <div class="media-box">
-              <span class="box-label">Foto (real)</span>
-              <img src="assets/projetos/projeto-03-real.jpg" alt="Projeto 03 - Foto real" loading="lazy" />
+              <span class="box-label">Imagem 1</span>
+              <img src="assets/projetos/projeto-03-1.jpg" alt="Projeto 03 - Foto real" loading="lazy" />
             </div>
 
             <div class="media-box">
-              <span class="box-label">Imagem (CAD)</span>
-              <img src="assets/projetos/projeto-03-cad.jpg" alt="Projeto 03 - CAD" loading="lazy" />
+              <span class="box-label">Imagem 2</span>
+              <img src="assets/projetos/projeto-03-2.jpg" alt="Projeto 03 - CAD" loading="lazy" />
             </div>
 
             <div class="media-box">
-              <span class="box-label">Vídeo</span>
-              <video class="video" controls preload="metadata" playsinline>
-                <source src="assets/projetos/projeto-03.mp4" type="video/mp4" />
-              </video>
+              <span class="box-label">Imagem 3</span>
+              <img src="assets/projetos/projeto-03-3.jpg" alt="Projeto 03 - CAD" loading="lazy" />
             </div>
-          </div>
-        </div>
-      </article>
-
-    </div>
   </section>
 
+      <article class="project-card">
+        <header class="project-head">
+          <div>
+            <span class="project-tag">ESTRUTURAL</span>
+            <h3 class="project-title">Ensaio de desempenho térmico e de fluxo de ar de hélices de ventilação</h3>
+            <p class="project-sub">Rigidez, massa e regiões críticas.</p>
+          </div>
+          <div class="project-meta">
+            <span class="pill">FEA</span>
+            <span class="pill">Versões</span>
+            <span class="pill">Otimizado</span>
+          </div>
+        </header>
+
+        <div class="project-body">
+          <div class="media-grid">
+            <div class="media-box">
+              <span class="box-label">Imagem 1</span>
+              <img src="assets/projetos/projeto-04-1.jpg" alt="Projeto 03 - Foto real" loading="lazy" />
+            </div>
+
+            <div class="media-box">
+              <span class="box-label">Gif 1</span>
+              <img src="assets/projetos/projeto-04-2.gif" alt="Projeto 03 - CAD" loading="lazy" />
+            </div>
+
+            <div class="media-box">
+              <span class="box-label">Gif 2</span>
+              <img src="assets/projetos/projeto-04-3.gif" alt="Projeto 03 - CAD" loading="lazy" />
+            </div>
+  </section>
 </main>
 
 <footer class="footer">
   <p>© <span id="year"></span> Juan Carlos Hernandez</p>
 </footer>
 
+<!-- ====== ADICIONADO: Lightbox iOS-like (somente acrescentado) ====== -->
+<div class="img-lightbox" id="imgLightbox" aria-hidden="true">
+  <div class="img-lightbox__backdrop" data-close="1"></div>
+  <img class="img-lightbox__img" id="imgLightboxImg" alt="" />
+  <button class="img-lightbox__close" type="button" aria-label="Fechar" data-close="1">×</button>
+</div>
+
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ====== ADICIONADO: abrir imagens em tela cheia (iOS-like) ====== */
+  (function(){
+    const lb = document.getElementById("imgLightbox");
+    const lbImg = document.getElementById("imgLightboxImg");
+    if(!lb || !lbImg) return;
+
+    let savedScrollY = 0;
+    let lastActiveEl = null;
+
+    // Scroll lock robusto: NÃO perde a posição (não joga pro topo)
+    function lockScroll(lock){
+      if(lock){
+        savedScrollY = window.scrollY || window.pageYOffset || 0;
+
+        document.documentElement.classList.add("lb-lock");
+        document.body.classList.add("lb-lock");
+
+        // trava a página sem perder a rolagem
+        document.body.style.position = "fixed";
+        document.body.style.top = (-savedScrollY) + "px";
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+        document.body.style.width = "100%";
+      }else{
+        document.documentElement.classList.remove("lb-lock");
+        document.body.classList.remove("lb-lock");
+
+        // destrava e restaura exatamente onde estava
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
+
+        window.scrollTo(0, savedScrollY);
+      }
+    }
+
+    function openLightbox(imgEl){
+      if(!imgEl || !imgEl.src) return;
+
+      lastActiveEl = document.activeElement;
+
+      lbImg.src = imgEl.currentSrc || imgEl.src;
+      lbImg.alt = imgEl.alt || "Imagem em tela cheia";
+
+      const r = imgEl.getBoundingClientRect();
+      lb.style.setProperty("--lb-x", (r.left + r.width/2) + "px");
+      lb.style.setProperty("--lb-y", (r.top + r.height/2) + "px");
+      lb.style.setProperty("--lb-w", r.width + "px");
+      lb.style.setProperty("--lb-h", r.height + "px");
+
+      lb.classList.add("is-open");
+      lb.setAttribute("aria-hidden", "false");
+      lockScroll(true);
+
+      void lb.offsetWidth;
+      lb.classList.add("is-ready");
+      lbImg.classList.add("is-ready");
+      // importante: NÃO forçar foco no botão (alguns browsers tentam “ancorar” scroll)
+    }
+
+    function closeLightbox(){
+      if(!lb.classList.contains("is-open")) return;
+
+      lb.classList.remove("is-ready");
+      lbImg.classList.remove("is-ready");
+
+      window.setTimeout(() => {
+        lb.classList.remove("is-open");
+        lb.setAttribute("aria-hidden", "true");
+        lbImg.removeAttribute("src");
+
+        lockScroll(false);
+
+        // tenta devolver foco sem mexer no scroll (fallback seguro)
+        if(lastActiveEl && typeof lastActiveEl.focus === "function"){
+          try { lastActiveEl.focus({ preventScroll: true }); }
+          catch(e){ lastActiveEl.focus(); }
+        }
+      }, 220);
+    }
+
+    document.addEventListener("click", (e) => {
+      const img = e.target && e.target.closest ? e.target.closest(".media-box img") : null;
+      if(img){
+        e.preventDefault();
+        openLightbox(img);
+        return;
+      }
+
+      const closeTarget = e.target && e.target.closest ? e.target.closest("[data-close]") : null;
+      if(closeTarget && lb.classList.contains("is-open")){
+        e.preventDefault();
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && lb.classList.contains("is-open")){
+        e.preventDefault();
+        closeLightbox();
+      }
+    });
+
+    lbImg.addEventListener("dragstart", (e) => e.preventDefault());
+    lbImg.addEventListener("click", (e) => e.stopPropagation());
+  })();
 </script>
 
 </body>
