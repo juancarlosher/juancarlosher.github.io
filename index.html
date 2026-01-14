@@ -1,0 +1,468 @@
+<!-- index.html (COMPLETO, sem CSS inline — tudo foi para o style.css) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Juan Carlos Hernandez</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS geral do site (agora contém também TODO o CSS do slider) -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">Juan Carlos</div>
+
+    <nav class="nav">
+      <a class="nav-btn" href="projetoparamanufatura.html">Projeto para manufatura</a>
+      <a class="nav-btn" href="renderizacao.html">Renderização</a>
+      <a class="nav-btn" href="otimizacaofluxocad.html">Fluxo CAD + automação</a>
+      <a class="nav-btn" href="coordenacaotecnica.html">Coordenação técnica</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-dim" id="pageDim"></div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="kicker">Portfólio</p>
+    <h1>Desenhista e Projetista.</h1>
+    <p class="subhead">
+      Projeto mecânico orientado à manufatura, automação de cálculos e documentação técnica integrada ao CAD.
+    </p>
+
+
+
+  <section class="section" id="destaques">
+    <div class="section-head">
+      <h2>Destaques.</h2>
+      <p>O que você encontra no meu trabalho.</p>
+    </div>
+
+    <div class="grid highlights">
+      <a class="card big link-card" href="projetoparamanufatura.html">
+        <span class="tag">FOCO</span>
+        <h3>Projeto para manufatura</h3>
+        <p>Modelagem paramétrica voltada à usinagem e rastreabilidade.</p>
+        <span class="cta">Abrir detalhes</span>
+      </a>
+
+      <a class="card big dark link-card" href="renderizacao.html">
+        <span class="tag light">RENDER</span>
+        <h3>Renderização</h3>
+        <p>Renderização e edição de vídeos de apresentação de produtos.</p>
+        <span class="cta light">Abrir detalhes</span>
+      </a>
+
+      <a class="card big link-card" href="otimizacaofluxocad.html">
+        <span class="tag">PROCESSO</span>
+        <h3>Otimização do fluxo CAD + automação</h3>
+        <p>Creo, Excel e Python para redução de retrabalho.</p>
+        <span class="cta">Abrir detalhes</span>
+      </a>
+
+      <a class="card big link-card" href="coordenacaotecnica.html">
+        <span class="tag">EQUIPE</span>
+        <h3>Coordenação técnica</h3>
+        <p>Alinhamento de requisitos, qualidade e integração.</p>
+        <span class="cta">Abrir detalhes</span>
+      </a>
+    </div>
+  </section>
+
+   <!-- SOFTWARES -->
+  <section class="section" id="softwares">
+    <div class="section-head">
+      <h2>Softwares.</h2>
+      <p>Arraste para o lado ou use as setas.</p>
+    </div>
+
+    <!-- 1) CAD / CAE -->
+    <h3 style="margin:0 0 10px;">CAD / CAE</h3>
+    <div class="slider" id="cadSlider">
+      <button class="slider-btn prev" type="button" aria-label="Voltar" id="cadPrev">‹</button>
+
+      <div class="track" id="cadTrack" tabindex="0" aria-label="Carrossel CAD">
+
+        <!-- ORDEM EXATA PEDIDA -->
+        <a class="soft-tile" style="--img:url('assets/creo.jpg'); --pos:center 55%;" href="https://www.ptc.com/en/products/creo" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">PTC Creo Parametric (Pro/ENGINEER)</p>
+            <p class="soft-sub">Clique para saber mais.</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/solidworks.jpg'); --pos:center;" href="https://www.solidworks.com/" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">SolidWorks</p>
+            <p class="soft-sub">Dassault Systèmes</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/solidworks-visualize.jpg'); --pos:center 60%;" href="https://www.solidworks.com/product/solidworks-visualize" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">SolidWorks Visualize</p>
+            <p class="soft-sub">Dassault Systèmes</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/inventor.jpg'); --pos:center;" href="https://www.autodesk.com/products/inventor/overview" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Autodesk Inventor</p>
+            <p class="soft-sub">Clique para saber mais.</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/autocad.jpg'); --pos:left 60%;" href="https://www.autodesk.com/products/autocad/overview" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">AutoCAD</p>
+            <p class="soft-sub">Autodesk</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+      </div>
+
+      <button class="slider-btn next" type="button" aria-label="Avançar" id="cadNext">›</button>
+    </div>
+
+
+    <!-- 2) Eletrônica (EDA) -->
+    <h3 style="margin:34px 0 10px;">Eletrônica (EDA)</h3>
+    <div class="slider" id="edaSlider">
+      <button class="slider-btn prev" type="button" aria-label="Voltar" id="edaPrev">‹</button>
+
+      <div class="track" id="edaTrack" tabindex="0" aria-label="Carrossel EDA">
+
+        <a class="soft-tile" style="--img:url('assets/proteus.jpg'); --pos:center;" href="https://www.labcenter.com/" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Proteus</p>
+            <p class="soft-sub">Labcenter Electronics</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/multisim.jpg'); --pos:center;" href="https://www.ni.com/" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Multisim</p>
+            <p class="soft-sub">National Instruments</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/kicad.jpg'); --pos:center;" href="https://www.kicad.org/" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">KiCad</p>
+            <p class="soft-sub">KiCad Developers</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+      </div>
+
+      <button class="slider-btn next" type="button" aria-label="Avançar" id="edaNext">›</button>
+    </div>
+
+
+    <!-- 3) Design e Vídeo -->
+    <h3 style="margin:34px 0 10px;">Design e Vídeo</h3>
+    <div class="slider" id="mediaSlider">
+      <button class="slider-btn prev" type="button" aria-label="Voltar" id="mediaPrev">‹</button>
+
+      <div class="track" id="mediaTrack" tabindex="0" aria-label="Carrossel Design e Vídeo">
+
+        <a class="soft-tile" style="--img:url('assets/photoshop.jpg'); --pos:center;" href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Adobe Photoshop</p>
+            <p class="soft-sub">Adobe</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/illustrator.jpg'); --pos:center;" href="https://www.adobe.com/products/illustrator.html" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Adobe Illustrator</p>
+            <p class="soft-sub">Adobe</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/premiere.jpg'); --pos:center;" href="https://www.adobe.com/products/premiere.html" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Adobe Premiere</p>
+            <p class="soft-sub">Adobe</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/vegas-pro.jpg'); --pos:center;" href="https://www.vegascreativesoftware.com/" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Vegas Pro</p>
+            <p class="soft-sub">MAGIX</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/filmora.jpg'); --pos:center;" href="https://filmora.wondershare.com/" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Filmora</p>
+            <p class="soft-sub">Wondershare</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+      </div>
+
+      <button class="slider-btn next" type="button" aria-label="Avançar" id="mediaNext">›</button>
+    </div>
+
+
+    <!-- 4) Office -->
+    <h3 style="margin:34px 0 10px;">Office</h3>
+    <div class="slider" id="officeSlider">
+      <button class="slider-btn prev" type="button" aria-label="Voltar" id="officePrev">‹</button>
+
+      <div class="track" id="officeTrack" tabindex="0" aria-label="Carrossel Office">
+
+        <a class="soft-tile" style="--img:url('assets/word.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/word" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Word</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/excel.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/excel" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Excel</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/powerpoint.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/powerpoint" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">PowerPoint</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/outlook.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/outlook" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Outlook</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/access.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/access" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Access</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/onenote.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/onenote" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">OneNote</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/publisher.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/publisher" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Publisher</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/teams.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-teams/group-chat-software" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Teams</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/onedrive.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/onedrive/online-cloud-storage" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">OneDrive</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/forms.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/online-surveys-polls-quizzes" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Forms</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/sway.jpg'); --pos:center;" href="https://sway.cloud.microsoft/" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Sway</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+        <a class="soft-tile" style="--img:url('assets/planner.jpg'); --pos:center;" href="https://www.microsoft.com/microsoft-365/planner/microsoft-planner" target="_blank" rel="noopener">
+          <div class="soft-img"></div>
+          <div class="soft-bar">
+            <p class="soft-title">Planner</p>
+            <p class="soft-sub">Microsoft 365</p>
+            <span class="soft-open">Abrir</span>
+          </div>
+        </a>
+
+      </div>
+
+      <button class="slider-btn next" type="button" aria-label="Avançar" id="officeNext">›</button>
+    </div>
+
+  </section>
+
+  <section class="section" id="formacao">
+    <div class="section-head">
+      <h2>Formação.</h2>
+      <p>Base acadêmica.</p>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3>Centro Universitário Senac Santo Amaro</h3>
+        <p><strong>Ensino Médio Técnico em TI</strong><br>2020–2022</p>
+      </div>
+
+      <div class="card">
+        <h3>Engenharia de Produção</h3>
+        <p><strong>Bacharelado</strong><br>2023–2027</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© <span id="year"></span> Juan Carlos Hernandez</p>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function initSoftSlider({ trackId, prevId, nextId, sliderId, dimId }) {
+    const track  = document.getElementById(trackId);
+    const prev   = document.getElementById(prevId);
+    const next   = document.getElementById(nextId);
+    const slider = document.getElementById(sliderId);
+    const dim    = document.getElementById(dimId);
+
+    if (!track || !prev || !next || !slider) return;
+
+    function step(){
+      const first = track.querySelector(".soft-tile");
+      if (!first) return Math.round(track.clientWidth * 0.85);
+      const styles = getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || "16") || 16;
+      return Math.round(first.getBoundingClientRect().width + gap);
+    }
+
+    prev.addEventListener("click", () => {
+      track.scrollBy({ left: -step(), behavior: "smooth" });
+    });
+
+    next.addEventListener("click", () => {
+      track.scrollBy({ left: step(), behavior: "smooth" });
+    });
+
+    // arrastar com mouse
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    track.addEventListener("mousedown", (e) => {
+      isDown = true;
+      track.classList.add("dragging");
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+
+    window.addEventListener("mouseup", () => {
+      isDown = false;
+      track.classList.remove("dragging");
+    });
+
+    track.addEventListener("mouseleave", () => {
+      isDown = false;
+      track.classList.remove("dragging");
+    });
+
+    track.addEventListener("mousemove", (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      track.scrollLeft = scrollLeft - walk;
+    });
+
+    // teclado
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next.click();
+      if (e.key === "ArrowLeft") prev.click();
+    });
+
+    // dim leve ao passar mouse na área do slider
+    if (dim) {
+      slider.addEventListener("mouseenter", () => dim.classList.add("on"));
+      slider.addEventListener("mouseleave", () => dim.classList.remove("on"));
+    }
+  }
+
+  // Inicializa todos
+  initSoftSlider({ trackId:"cadTrack",   prevId:"cadPrev",   nextId:"cadNext",   sliderId:"cadSlider",   dimId:"pageDim" });
+  initSoftSlider({ trackId:"edaTrack",   prevId:"edaPrev",   nextId:"edaNext",   sliderId:"edaSlider",   dimId:"pageDim" });
+  initSoftSlider({ trackId:"mediaTrack", prevId:"mediaPrev", nextId:"mediaNext", sliderId:"mediaSlider", dimId:"pageDim" });
+  initSoftSlider({ trackId:"officeTrack",prevId:"officePrev",nextId:"officeNext",sliderId:"officeSlider",dimId:"pageDim" });
+</script>
+
+</body>
+</html>
