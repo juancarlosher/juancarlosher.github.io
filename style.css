@@ -486,3 +486,20 @@ body{
   color: rgba(15,15,16,.55);
   margin-top: 40px;
 }
+
+@media (max-width: 640px){
+  .slider{
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .slider-btn{
+    display: none;
+  }
+
+  .track{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+

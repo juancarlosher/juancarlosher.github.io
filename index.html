@@ -396,7 +396,7 @@
     const slider = document.getElementById(sliderId);
     const dim    = document.getElementById(dimId);
 
-    if (!track || !prev || !next || !slider) return;
+    if (!track || !slider) return;
 
     function readPxVar(name, fallback){
       const v = getComputedStyle(track).getPropertyValue(name).trim();
@@ -462,13 +462,17 @@
       requestAnimationFrame(() => snapToNearest());
     });
 
-    prev.addEventListener("click", () => {
-      track.scrollBy({ left: -step(), behavior: "smooth" });
-    });
+    if (prev) {
+  prev.addEventListener("click", () => {
+    track.scrollBy({ left: -step(), behavior: "smooth" });
+  });
+}
 
-    next.addEventListener("click", () => {
-      track.scrollBy({ left: step(), behavior: "smooth" });
-    });
+if (next) {
+  next.addEventListener("click", () => {
+    track.scrollBy({ left: step(), behavior: "smooth" });
+  });
+}
 
     // arrastar com mouse
     let isDown = false;
