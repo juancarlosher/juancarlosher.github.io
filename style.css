@@ -356,7 +356,7 @@ body{
   width: var(--tile-w);
   flex: 0 0 var(--tile-w);
 
-  aspect-ratio: 1 / 1;
+  aspect-ratio: var(--tile-ar, 1 / 1);
   border-radius: 22px;
   position: relative;
   overflow: hidden;
@@ -426,13 +426,13 @@ body{
 }
 
 .soft-title{
-  font-size: 20px;
+  font-size: clamp(16px, calc(20px * var(--tile-scale, 1)), 22px);
   font-weight: 800;
   line-height: 1.1;
   margin: 0;
 }
 .soft-sub{
-  font-size: 13px;
+  font-size: clamp(12px, calc(13px * var(--tile-scale, 1)), 14px);
   font-weight: 600;
   opacity: .92;
   margin: 0;
@@ -443,7 +443,7 @@ body{
   position: absolute;
   right: 12px;
   bottom: 12px;
-  font-size: 13px;
+  font-size: clamp(12px, calc(13px * var(--tile-scale, 1)), 14px);
   font-weight: 900;
   display: inline-flex;
   align-items: center;

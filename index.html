@@ -431,6 +431,10 @@
       w = Math.min(w, maxW);
 
       track.style.setProperty("--tile-w", w + "px");
+      // deixa o card mais alto no mobile e ajusta fontes conforme o tamanho real do card
+      track.style.setProperty("--tile-ar", (w <= 290 ? "4 / 5" : "1 / 1"));
+      track.style.setProperty("--tile-scale", String(Math.max(0.86, Math.min(1, w / 320))));
+
     }
 
     function step(){
