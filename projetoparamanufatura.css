@@ -164,7 +164,13 @@ body{
   align-items:flex-start;
   justify-content:space-between;
   gap: 14px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* permite quebrar linha */
+}
+
+/* garante que o texto tenha prioridade de largura */
+.project-head > div:first-child{
+  flex: 1 1 520px;
+  min-width: 0;
 }
 
 .project-tag{
@@ -189,14 +195,56 @@ body{
 .project-sub{
   margin: 8px 0 0;
   color: rgba(15,15,16,.70);
-  max-width: 72ch;
+  max-width: none;   /* remove a faixa vazia */
+  width: 100%;
 }
+
+.project-head p,
+.project-head .project-desc p,
+.project-head .project-desc ul{
+  max-width: none;
+  width: 100%;
+}
+
+
+/* tipografia do texto longo do projeto */
+.project-desc{
+  margin-top: 10px;
+}
+
+.project-desc p{
+  margin: 10px 0 0;
+  color: rgba(15,15,16,.74);
+  line-height: 1.45;
+  max-width: 92ch;
+}
+
+.project-desc h4{
+  margin: 14px 0 0;
+  font-size: 14px;
+  letter-spacing: .2px;
+}
+
+.project-desc ul{
+  margin: 10px 0 0;
+  padding-left: 18px; /* reduz recuo da lista */
+}
+
+.project-desc li{
+  margin: 4px 0;
+}
+
 
 .project-meta{
   display:flex;
   gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
+
+  /* força as pílulas a irem para baixo e libera 100% da largura pro texto */
+  flex: 0 0 100%;
+  width: 100%;
+  margin-top: 12px;
 }
 
 .pill{
