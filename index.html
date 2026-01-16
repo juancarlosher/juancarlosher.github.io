@@ -15,6 +15,9 @@
 <header class="topbar">
   <div class="wrap topbar-inner">
     <div class="brand">Juan Carlos</div>
+<button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav">
+  <span class="nav-toggle-lines" aria-hidden="true"></span>
+</button>
 
     <nav class="nav">
       <a class="nav-btn" href="projetoparamanufatura.html">Projeto para manufatura</a>
@@ -24,6 +27,16 @@
     </nav>
   </div>
 </header>
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav-inner">
+    <a class="mobile-nav-link" href="projetoparamanufatura.html">Projeto para manufatura</a>
+    <a class="mobile-nav-link" href="renderizacao.html">Renderização</a>
+    <a class="mobile-nav-link" href="otimizacaofluxocad.html">Fluxo CAD + automação</a>
+    <a class="mobile-nav-link" href="coordenacaotecnica.html">Coordenação técnica</a>
+  </div>
+</div>
+
+<div class="mobile-nav-dim" id="mobileNavDim"></div>
 
 <div class="page-dim" id="pageDim"></div>
 
@@ -534,6 +547,47 @@ if (next) {
   initSoftSlider({ trackId:"edaTrack",   prevId:"edaPrev",   nextId:"edaNext",   sliderId:"edaSlider",   dimId:"pageDim" });
   initSoftSlider({ trackId:"mediaTrack", prevId:"mediaPrev", nextId:"mediaNext", sliderId:"mediaSlider", dimId:"pageDim" });
   initSoftSlider({ trackId:"officeTrack",prevId:"officePrev",nextId:"officeNext",sliderId:"officeSlider",dimId:"pageDim" });
+  // MENU MOBILE (hamburger)
+  (function(){
+    const btn = document.querySelector(".nav-toggle");
+    const panel = document.getElementById("mobileNav");
+    const dim = document.getElementById("mobileNavDim");
+
+    if (!btn || !panel || !dim) return;
+
+    function openMenu(){
+      document.body.classList.add("mobile-nav-open");
+      btn.setAttribute("aria-expanded", "true");
+      panel.setAttribute("aria-hidden", "false");
+      btn.setAttribute("aria-label", "Fechar menu");
+    }
+
+    function closeMenu(){
+      document.body.classList.remove("mobile-nav-open");
+      btn.setAttribute("aria-expanded", "false");
+      panel.setAttribute("aria-hidden", "true");
+      btn.setAttribute("aria-label", "Abrir menu");
+    }
+
+    btn.addEventListener("click", () => {
+      const isOpen = document.body.classList.contains("mobile-nav-open");
+      if (isOpen) closeMenu(); else openMenu();
+    });
+
+    dim.addEventListener("click", closeMenu);
+
+    // fecha ao clicar em um link
+    panel.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) closeMenu();
+    });
+
+    // fecha com ESC (desktop também, se testar)
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+  })();
+
 </script>
 </body>
 </html>

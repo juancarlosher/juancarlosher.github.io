@@ -503,3 +503,151 @@ body{
   }
 }
 
+@media (max-width: 640px){
+  .topbar-inner{
+    padding: 8px 0;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px){
+  .brand{
+    font-size: 14px;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 640px){
+  .nav{
+    gap: 6px;
+  }
+
+  .nav-btn{
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 640px){
+  .topbar-inner{
+    align-items: center;
+  }
+}
+
+
+/* =========================
+   MENU MOBILE (HAMBURGER)
+========================= */
+.nav-toggle{
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.92);
+  cursor: pointer;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.nav-toggle-lines{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+}
+
+.nav-toggle-lines::before,
+.nav-toggle-lines::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(15,15,16,.85);
+  transition: transform .2s ease, top .2s ease, opacity .2s ease;
+}
+
+.nav-toggle-lines::before{ top: 0; }
+.nav-toggle-lines::after{ top: 10px; }
+
+body.mobile-nav-open .nav-toggle-lines::before{
+  top: 5px;
+  transform: rotate(45deg);
+}
+body.mobile-nav-open .nav-toggle-lines::after{
+  top: 5px;
+  transform: rotate(-45deg);
+}
+
+/* Painel do menu */
+.mobile-nav{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 64px; /* altura aproximada da topbar */
+  z-index: 60;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.mobile-nav-inner{
+  width: min(520px, calc(100% - 24px));
+  margin: 0 auto;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 26px 70px rgba(0,0,0,.12);
+  padding: 10px;
+}
+
+.mobile-nav-link{
+  display: block;
+  text-decoration: none;
+  color: rgba(15,15,16,.92);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 12px 12px;
+  border-radius: 14px;
+}
+
+.mobile-nav-link:hover{
+  background: rgba(0,0,0,.06);
+}
+
+/* Escurecedor */
+.mobile-nav-dim{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.14);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 55;
+}
+
+body.mobile-nav-open .mobile-nav{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+body.mobile-nav-open .mobile-nav-dim{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Ativa apenas no mobile */
+@media (max-width: 740px){
+  .nav{ display: none; }
+  .nav-toggle{ display: inline-flex; }
+}
+
+
+
