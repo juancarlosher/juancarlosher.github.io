@@ -398,13 +398,65 @@
 
     if (!track || !prev || !next || !slider) return;
 
-    function step(){
-      const first = track.querySelector(".soft-tile");
-      if (!first) return Math.round(track.clientWidth * 0.85);
-      const styles = getComputedStyle(track);
-      const gap = parseFloat(styles.columnGap || styles.gap || "16") || 16;
-      return Math.round(first.getBoundingClientRect().width + gap);
+    function readPxVar(name, fallback){
+      const v = getComputedStyle(track).getPropertyValue(name).trim();
+      const n = parseFloat(v);
+      return Number.isFinite(n) ? n : fallback;
     }
+
+    function setTileWidthToFit(){
+      const gap = readPxVar("--tile-gap", 16);
+      const pad = readPxVar("--tile-pad", 8);
+
+      const minW = 240;   // mínimo aceitável no mobile (evita “meio bloco”)
+      const maxW = 360;   // não deixa ficar gigante no desktop
+      const maxN = 4;     // limite de cards visíveis (ajuste se quiser 5)
+
+      const avail = Math.max(1, track.clientWidth - (2 * pad));
+
+      // primeiro chute: quantos cabem com minW
+      let n = Math.max(1, Math.min(maxN, Math.floor((avail + gap) / (minW + gap))));
+
+      // calcula w para encaixar EXATO sem sobrar espaço “meio card”
+      let w = Math.floor((avail - ((n - 1) * gap)) / n);
+
+      // se ficou grande demais, tenta aumentar n para mostrar mais cards inteiros
+      while (n < maxN) {
+        const w2 = Math.floor((avail - (n * gap)) / (n + 1));
+        if (w2 >= minW && w2 <= maxW) { n += 1; w = w2; }
+        else break;
+      }
+
+      // trava para não ultrapassar maxW (mantém estética)
+      w = Math.min(w, maxW);
+
+      track.style.setProperty("--tile-w", w + "px");
+    }
+
+    function step(){
+      const gap = readPxVar("--tile-gap", 16);
+      const w = readPxVar("--tile-w", 320);
+      return Math.round(w + gap);
+    }
+
+    function snapToNearest(){
+      const gap = readPxVar("--tile-gap", 16);
+      const w = readPxVar("--tile-w", 320);
+      const unit = w + gap;
+      const i = Math.round(track.scrollLeft / unit);
+      const target = i * unit;
+      track.scrollTo({ left: target, behavior: "smooth" });
+    }
+
+    // aplica no load + resize (garante sempre cards inteiros)
+    setTileWidthToFit();
+    window.addEventListener("resize", () => {
+      const old = track.scrollLeft;
+      setTileWidthToFit();
+      // mantém alinhado após resize
+      requestAnimationFrame(() => track.scrollTo({ left: old, behavior: "auto" }));
+      requestAnimationFrame(() => snapToNearest());
+    });
 
     prev.addEventListener("click", () => {
       track.scrollBy({ left: -step(), behavior: "smooth" });
@@ -427,13 +479,17 @@
     });
 
     window.addEventListener("mouseup", () => {
+      if (!isDown) return;
       isDown = false;
       track.classList.remove("dragging");
+      snapToNearest();
     });
 
     track.addEventListener("mouseleave", () => {
+      if (!isDown) return;
       isDown = false;
       track.classList.remove("dragging");
+      snapToNearest();
     });
 
     track.addEventListener("mousemove", (e) => {
@@ -450,6 +506,14 @@
       if (e.key === "ArrowLeft") prev.click();
     });
 
+    // snap no fim do scroll (mobile também)
+    let snapT = null;
+    track.addEventListener("scroll", () => {
+      if (isDown) return;
+      clearTimeout(snapT);
+      snapT = setTimeout(snapToNearest, 80);
+    }, { passive: true });
+
     // dim leve ao passar mouse na área do slider
     if (dim) {
       slider.addEventListener("mouseenter", () => dim.classList.add("on"));
@@ -457,12 +521,11 @@
     }
   }
 
-  // Inicializa todos
+  // Inicializa todos (MANTER COMO ESTÁ NO SEU HTML)
   initSoftSlider({ trackId:"cadTrack",   prevId:"cadPrev",   nextId:"cadNext",   sliderId:"cadSlider",   dimId:"pageDim" });
   initSoftSlider({ trackId:"edaTrack",   prevId:"edaPrev",   nextId:"edaNext",   sliderId:"edaSlider",   dimId:"pageDim" });
   initSoftSlider({ trackId:"mediaTrack", prevId:"mediaPrev", nextId:"mediaNext", sliderId:"mediaSlider", dimId:"pageDim" });
   initSoftSlider({ trackId:"officeTrack",prevId:"officePrev",nextId:"officeNext",sliderId:"officeSlider",dimId:"pageDim" });
 </script>
-
 </body>
 </html>

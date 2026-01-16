@@ -326,26 +326,36 @@ body{
 }
 
 .track{
-  display: grid;
-  grid-auto-flow: column;
-  gap: 16px;
+  --tile-gap: 16px;
+  --tile-pad: 8px;
+  --tile-w: 320px;
+
+  display: flex;
+  gap: var(--tile-gap);
   overflow-x: auto;
-  padding: 8px 8px 18px;
+  padding: var(--tile-pad) var(--tile-pad) 18px;
+
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  /* IMPORTANTE: garante que cada card “encaixe” inteiro */
-  align-items: start;
+
+  align-items: stretch;
 }
+
 .track::-webkit-scrollbar{ display:none; }
 .track.dragging{ cursor: grabbing; user-select:none; }
 
 /* Card quadrado */
 .soft-tile{
   --pos: center;
+  display: block;
+
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  width: 320px;
+
+  width: var(--tile-w);
+  flex: 0 0 var(--tile-w);
+
   aspect-ratio: 1 / 1;
   border-radius: 22px;
   position: relative;
@@ -458,12 +468,12 @@ body{
 
 /* Responsivo (mantém o comportamento do encaixe) */
 @media (max-width: 980px){
-  .soft-tile{ width: 280px; }
+  .soft-tile{ width: var(--tile-w); }
 }
 @media (max-width: 520px){
   .slider{ grid-template-columns: 40px 1fr 40px; }
   .slider-btn{ width: 40px; height: 40px; }
-  .soft-tile{ width: 260px; }
+  .soft-tile{ width: var(--tile-w); }
 }
 
 /* =========================
